@@ -2,10 +2,63 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(2,1fr);
-    margin: auto;
-    padding: 10px;
+    /* margin: 10px; */
+    /* padding: 10px; */
 }
 
-#canvas{
+#box1{
     border: 2px solid red;
+}
+
+#box2{
+    border: 2px solid red;
+}
+
+.form-group {
+    padding: 1em;
+    margin: 1em;
+    position: absolute;
+   }
+.form-group.hide{
+    display: none;
+}
+   input[type=file] {
+     outline: 0;
+     opacity: 0;
+     pointer-events: none;
+     user-select: none;
+   }
+   
+   .label {
+     width: 120px;
+    /* height: 100px; */
+     border: 2px dashed grey;
+     border-radius: 5px;
+     display: block;
+     padding: 1.2em;
+     cursor: pointer;
+     text-align: center;
+     background-color: rgba(250, 250, 250, );
+    
+     i {
+       display: block;
+       font-size: 2rem;
+       padding-bottom: 16px;
+     }
+     
+     
+     
+     &:hover {
+       border: 2px solid black;
+       
+     }
+   }
+
+   .form-group2 {
+    padding: 1em;
+    margin: 1em;
+    position: absolute;
+   }
+.form-group2.hide{
+    display: none;
 }
