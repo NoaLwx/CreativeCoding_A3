@@ -2,12 +2,10 @@ document.body.style.margin   = 0
 document.body.style.overflow = `hidden`
 
 const cnv = document.querySelector("#canvas");
-cnv.width = innerWidth
-cnv.height = 800
+// cnv.width = innerWidth
+// cnv.height = 800
 
 const ctx = cnv.getContext (`2d`);
-
-
 
 document.addEventListener('DOMContentLoaded', function() {
 
@@ -26,7 +24,6 @@ uploader.addEventListener('change',(e) => {
 
    img = new Image();
    img.src = URL.createObjectURL(myFile);
-
    const resetCanvas = () =>{
       ctx.fillStyle = `white`
       ctx.fillRect (0, 0, innerWidth, innerHeight)
@@ -35,8 +32,10 @@ uploader.addEventListener('change',(e) => {
    img.onload = () => {
       setInterval(()=>{
          resetCanvas();
+         // img.width = 200;
+         // img.height = 200;
 
-         ctx.drawImage(img, currentX - img.width/2, currentY - img.height/2);
+         ctx.drawImage(img, currentX - img.width/10, currentY - img.height/10, img.width/2,img.height/2);
       }, 200);
 
    };
@@ -88,6 +87,6 @@ cnv.onmouseout = (e) =>{
 // draw_frame ()
 
 window.onresize = () => {
-   cnv.width = innerWidth
-   cnv.height = 800   
+   cnv.width = 300
+   cnv.height = 300   
 }
