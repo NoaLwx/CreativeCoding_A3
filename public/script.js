@@ -2,7 +2,7 @@ document.body.style.margin   = 0
 document.body.style.overflow = `hidden`
 
 const cnv = document.querySelector("#canvas");
-cnv.width = 1000
+cnv.width = innerWidth
 cnv.height = 800
 
 const ctx = cnv.getContext (`2d`);
@@ -26,11 +26,19 @@ uploader.addEventListener('change',(e) => {
 
    img = new Image();
    img.src = URL.createObjectURL(myFile);
+
+   const resetCanvas = () =>{
+      ctx.fillStyle = `white`
+      ctx.fillRect (0, 0, innerWidth, innerHeight)
+   }
   
    img.onload = () => {
       setInterval(()=>{
+         resetCanvas();
+
          ctx.drawImage(img, currentX - img.width/2, currentY - img.height/2);
       }, 200);
+
    };
  });
 
@@ -52,8 +60,8 @@ cnv.onmousedown = (e) =>{
 
 cnv.onmousemove = (e) =>{
    if(draggable){
-      currentX = e.layerX - img.width / 2;
-      currentY = e.layerY - img.height / 2;
+      currentX = e.layerX;
+      currentY = e.layerY;
   }
 }
 cnv.onmouseup = (e) =>{
@@ -79,7 +87,7 @@ cnv.onmouseout = (e) =>{
 
 // draw_frame ()
 
-// window.onresize = () => {
-//    cnv.width = innerWidth
-//    cnv.height = innerHeight   
-// }
+window.onresize = () => {
+   cnv.width = innerWidth
+   cnv.height = 800   
+}
