@@ -1,7 +1,5 @@
 const socket = new WebSocket (`ws://localhost/`)
 socket.onopen = () => console.log (`client websocket opened!`)
-document.body.style.margin   = 0
-document.body.style.overflow = `hidden`
 
 // const canvas = document.querySelector("#myCanvas");
 // const image    = canvas.toDataURL("image/png");
@@ -9,20 +7,19 @@ document.body.style.overflow = `hidden`
 // canvas.height = innerHeight;
 // document.write('<img src="'+image+'"/>');
 
-
-
-
 //canvas1---------------------------------------
 // const myDiv = document.querySelector('.container');
+
+
+document.addEventListener('DOMContentLoaded', function() {
+document.body.style.margin   = 0
+document.body.style.overflow = `hidden`
 
 const cnv = document.querySelector("#box1");
 cnv.width = innerWidth/5;
 cnv.height = innerHeight/4;
 
-
 const ctx = cnv.getContext (`2d`);
-
-document.addEventListener('DOMContentLoaded', function() {
 
 let img = null; 
 let draggable = false;
@@ -99,28 +96,29 @@ cnv.onmouseup = (e) =>{
 cnv.onmouseout = (e) =>{
    draggable = false;
 }
-});
+
 
 window.onresize = () => {
    cnv.width = innerWidth/5
    cnv.height = innerHeight/4
-   cnv2.width = innerWidth/5
-   cnv2.height = innerHeight/4
 }
+});
 
 
 //canvas2----------------------------------------
 
-const cnv2 = document.querySelector("#box2");
-// cnv2.width = innerWidth/2;
-// cnv2.height = innerHeight/3;
 
-const ctx2 = cnv2.getContext (`2d`);
 
 document.addEventListener('DOMContentLoaded', function() {
 
+const cnv2 = document.querySelector("#box2");
+cnv2.width = innerWidth/5;
+cnv2.height = innerHeight/4;
+
+const ctx2 = cnv2.getContext (`2d`);
+
 let img2 = null; 
-// let draggable = false;
+let draggable = false;
 let current2X = cnv2.width/2; 
 let current2Y = cnv2.height/2; 
 
@@ -191,5 +189,11 @@ cnv2.onmouseup = (e) =>{
 
 cnv2.onmouseout = (e) =>{
    draggable = false;
+}
+
+
+window.onresize = () => {
+   cnv2.width = innerWidth/5
+   cnv2.height = innerHeight/4
 }
 });
