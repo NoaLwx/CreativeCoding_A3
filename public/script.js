@@ -22,7 +22,6 @@ cnv.height = innerHeight/4;
 
 const ctx = cnv.getContext (`2d`);
 
-
 document.addEventListener('DOMContentLoaded', function() {
 
 let img = null; 
