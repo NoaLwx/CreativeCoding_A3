@@ -3,13 +3,25 @@ socket.onopen = () => console.log (`client websocket opened!`)
 document.body.style.margin   = 0
 document.body.style.overflow = `hidden`
 
-//canvas1---------------------------------------
+const canvas = document.querySelector("#myCanvas");
+const image    = canvas.toDataURL("image/png");
+canvas.width = innerWidth;
+canvas.height = innerHeight;
+document.write('<img src="'+image+'"/>');
 
-const cnv = document.querySelector("#box1");
-cnv.width = innerWidth/2;
-cnv.height = innerHeight/3;
+
+
+
+//canvas1---------------------------------------
+// const myDiv = document.querySelector('.container');
+
+const cnv = document.querySelector(".container.one");
+cnv.width = innerWidth/5;
+cnv.height = innerHeight/4;
+
 
 const ctx = cnv.getContext (`2d`);
+
 
 document.addEventListener('DOMContentLoaded', function() {
 
@@ -19,7 +31,7 @@ let currentX = cnv.width/2;
 let currentY = cnv.height/2; 
 
 const uploader = document.querySelector("#uploader");
-const inputBox = document.querySelector(".form-group");
+const inputBox = document.querySelector(".form-group.one");
 
 
 uploader.addEventListener('change',(e) => {
@@ -91,18 +103,18 @@ cnv.onmouseout = (e) =>{
 });
 
 window.onresize = () => {
-   cnv.width = innerWidth/2
-   cnv.height = innerHeight/3
-   cnv2.width = innerWidth/2
-   cnv2.height = innerHeight/3
+   cnv.width = innerWidth/5
+   cnv.height = innerHeight/4
+   cnv2.width = innerWidth/5
+   cnv2.height = innerHeight/4
 }
 
 
 //canvas2----------------------------------------
 
-const cnv2 = document.querySelector("#box2");
-cnv2.width = innerWidth/2;
-cnv2.height = innerHeight/3;
+const cnv2 = document.querySelector(".container.two");
+// cnv2.width = innerWidth/2;
+// cnv2.height = innerHeight/3;
 
 const ctx2 = cnv2.getContext (`2d`);
 
@@ -114,7 +126,7 @@ let current2X = cnv2.width/2;
 let current2Y = cnv2.height/2; 
 
 const uploader2 = document.querySelector("#uploader2");
-const inputBox2 = document.querySelector(".form-group2");
+const inputBox2 = document.querySelector(".form-group.two");
 
 
 uploader2.addEventListener('change',(e) => {
@@ -139,7 +151,7 @@ uploader2.addEventListener('change',(e) => {
 
    };   
 
-   setTimeout(() => {
+setTimeout(() => {
       inputBox2.classList.toggle("hide");
   }, 100);
 
