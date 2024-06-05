@@ -3,11 +3,11 @@ socket.onopen = () => console.log (`client websocket opened!`)
 document.body.style.margin   = 0
 document.body.style.overflow = `hidden`
 
-const canvas = document.querySelector("#myCanvas");
-const image    = canvas.toDataURL("image/png");
-canvas.width = innerWidth;
-canvas.height = innerHeight;
-document.write('<img src="'+image+'"/>');
+// const canvas = document.querySelector("#myCanvas");
+// const image    = canvas.toDataURL("image/png");
+// canvas.width = innerWidth;
+// canvas.height = innerHeight;
+// document.write('<img src="'+image+'"/>');
 
 
 
@@ -15,7 +15,7 @@ document.write('<img src="'+image+'"/>');
 //canvas1---------------------------------------
 // const myDiv = document.querySelector('.container');
 
-const cnv = document.querySelector(".container.one");
+const cnv = document.querySelector("#box1");
 cnv.width = innerWidth/5;
 cnv.height = innerHeight/4;
 
@@ -112,7 +112,7 @@ window.onresize = () => {
 
 //canvas2----------------------------------------
 
-const cnv2 = document.querySelector(".container.two");
+const cnv2 = document.querySelector("#box2");
 // cnv2.width = innerWidth/2;
 // cnv2.height = innerHeight/3;
 
@@ -121,7 +121,7 @@ const ctx2 = cnv2.getContext (`2d`);
 document.addEventListener('DOMContentLoaded', function() {
 
 let img2 = null; 
-let draggable = false;
+// let draggable = false;
 let current2X = cnv2.width/2; 
 let current2Y = cnv2.height/2; 
 
