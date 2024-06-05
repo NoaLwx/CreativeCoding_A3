@@ -1,6 +1,9 @@
 const socket = new WebSocket (`ws://localhost/`)
 socket.onopen = () => console.log (`client websocket opened!`)
 
+
+
+
 // const canvas = document.querySelector("#myCanvas");
 // const image    = canvas.toDataURL("image/png");
 // canvas.width = innerWidth;
@@ -12,8 +15,7 @@ socket.onopen = () => console.log (`client websocket opened!`)
 
 
 document.addEventListener('DOMContentLoaded', function() {
-document.body.style.margin   = 0
-document.body.style.overflow = `hidden`
+
 
 const cnv = document.querySelector("#box1");
 cnv.width = innerWidth/5;
@@ -97,10 +99,9 @@ cnv.onmouseout = (e) =>{
    draggable = false;
 }
 
-
 window.onresize = () => {
    cnv.width = innerWidth/5
-   cnv.height = innerHeight/4
+   cnv2.height = innerHeight/4
 }
 });
 

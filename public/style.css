@@ -1,3 +1,7 @@
+body{
+  margin: 0;
+  overflow: hidden;
+}
 .outer {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
@@ -36,6 +40,7 @@
 .form-group.hide{
     display: none;
 }
+
   input[type=file] {
   outline: 0;
   opacity: 0;
@@ -52,7 +57,7 @@
   padding: 10px;
   cursor: pointer;
   text-align: center;
-  background-color: rgba(250, 250, 250, );
+  background-color: rgba(250, 250, 250,0.3 );
     
 i {
   display: block;
