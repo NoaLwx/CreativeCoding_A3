@@ -3,12 +3,21 @@ socket.onopen = () => console.log (`client websocket opened!`)
 
 
 
+// // Get the canvas
+// var canvas = document.getElementById("canvas");
+// // Convert the canvas to data
+// var image = canvas.toDataURL();
+// // Create a link
+// var aDownloadLink = document.createElement('a');
+// // Add the name of the file to the link
+// aDownloadLink.download = 'canvas_image.png';
+// // Attach the data to the link
+// aDownloadLink.href = image;
+// // Get the code to click the download link
+// aDownloadLink.click();
 
-// const canvas = document.querySelector("#myCanvas");
-// const image    = canvas.toDataURL("image/png");
-// canvas.width = innerWidth;
-// canvas.height = innerHeight;
-// document.write('<img src="'+image+'"/>');
+
+
 
 //canvas1---------------------------------------
 // const myDiv = document.querySelector('.container');
@@ -51,7 +60,7 @@ uploader.addEventListener('change',(e) => {
          // img.width = 200;
          // img.height = 200;
 
-         ctx.drawImage(img, currentX - img.width/6, currentY - img.height/6, img.width/3, img.height/3);
+         ctx.drawImage(img, currentX - img.width/4, currentY - img.height/4, img.width/2, img.height/2);
       }, 200);
 
    };   
@@ -101,7 +110,7 @@ cnv.onmouseout = (e) =>{
 
 window.onresize = () => {
    cnv.width = innerWidth/5
-   cnv2.height = innerHeight/4
+   cnv.height = innerHeight
 }
 });
 
