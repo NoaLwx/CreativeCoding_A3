@@ -390,6 +390,194 @@ document.addEventListener('DOMContentLoaded', function() {
       cnv4.height = innerHeight/4
    }
    });
+
+//canvas5----------------------------------------
+
+document.addEventListener('DOMContentLoaded', function() {
+
+   const cnv5 = document.querySelector("#box5");
+   cnv5.width = innerWidth/5*2;
+   cnv5.height = innerHeight/4*2;
+   
+   const ctx5 = cnv5.getContext (`2d`);
+   
+   let img5 = null; 
+   let draggable = false;
+   let current5X = cnv5.width/2; 
+   let current5Y = cnv5.height/2; 
+   
+   const uploader5 = document.querySelector("#uploader5");
+   const inputBox5 = document.querySelector(".form-group.five");
+   
+   
+   uploader5.addEventListener('change',(e) => {
+      console.log('upload');
+      const myFile5 = uploader5.files[0];
+      console.log(myFile5.name);
+   
+      img5 = new Image();
+      img5.src = URL.createObjectURL(myFile5);
+      
+      const resetCanvas = () =>{
+         ctx5.fillStyle = `white`
+         ctx5.fillRect (0, 0, innerWidth, innerHeight)
+      }
+     
+      img5.onload = () => {
+         setInterval(()=>{
+            resetCanvas();
+   
+            ctx5.drawImage(img5, current5X - img5.width/6, current5Y - img5.height/6, img5.width/2, img5.height/2);
+         }, 200);
+   
+      };   
+   
+   setTimeout(() => {
+         inputBox5.classList.toggle("hide");
+     }, 100);
+   
+    });
+   
+   cnv5.addEventListener("dblclick", toggleInputVisibility)
+   
+    function toggleInputVisibility() {
+      inputBox5.classList.toggle("hide");
+    }
+   
+   //detech if the click is on the image
+   cnv5.onmousedown = (e) =>{
+   
+      if (img5!== null &&
+         e.layerX < (current5X + img5.width) &&
+         e.layerX > (current5X - img5.width) &&
+         e.layerY < (current5Y + img5.height/2) &&
+         e.layerY > (current5Y - img5.height/2))
+         {
+            draggable = true;
+            console.log("clicked");
+         }
+      else {
+         console.log("nah");
+      }
+   }
+   
+   cnv5.onmousemove = (e) =>{
+      if(draggable){
+         current5X = e.layerX;
+         current5Y = e.layerY;
+     }
+   }
+   cnv5.onmouseup = (e) =>{
+      draggable = false;
+   }
+   
+   cnv5.onmouseout = (e) =>{
+      draggable = false;
+   }
+   
+   
+   window.onresize = () => {
+      cnv5.width = innerWidth/5*2
+      cnv5.height = innerHeight/4*2
+   }
+   });
+
+
+//canvas6----------------------------------------
+
+document.addEventListener('DOMContentLoaded', function() {
+
+   const cnv6 = document.querySelector("#box6");
+   cnv6.width = innerWidth/5*2;
+   cnv6.height = innerHeight/4;
+   
+   const ctx6= cnv6.getContext (`2d`);
+   
+   let img6 = null; 
+   let draggable = false;
+   let current6X = cnv6.width/2; 
+   let current6Y = cnv6.height/2; 
+   
+   const uploader6 = document.querySelector("#uploader6");
+   const inputBox6 = document.querySelector(".form-group.six");
+   
+   
+   uploader6.addEventListener('change',(e) => {
+      console.log('upload');
+      const myFile6 = uploader6.files[0];
+      console.log(myFile6.name);
+   
+      img6 = new Image();
+      img6.src = URL.createObjectURL(myFile6);
+      
+      const resetCanvas = () =>{
+         ctx6.fillStyle = `white`
+         ctx6.fillRect (0, 0, innerWidth, innerHeight)
+      }
+     
+      img6.onload = () => {
+         setInterval(()=>{
+            resetCanvas();
+   
+            ctx6.drawImage(img6, current6X - img6.width/6, current6Y - img6.height/6, img6.width/2, img6.height/2);
+         }, 200);
+   
+      };   
+   
+   setTimeout(() => {
+         inputBox6.classList.toggle("hide");
+     }, 100);
+   
+    });
+   
+   cnv6.addEventListener("dblclick", toggleInputVisibility)
+   
+    function toggleInputVisibility() {
+         inputBox6.classList.toggle("hide");
+    }
+   
+   //detech if the click is on the image
+   cnv6.onmousedown = (e) =>{
+   
+      if (img6!== null &&
+         e.layerX < (current6X + img6.width) &&
+         e.layerX > (current6X - img6.width) &&
+         e.layerY < (current6Y + img6.height/2) &&
+         e.layerY > (current6Y - img6.height/2))
+         {
+            draggable = true;
+            console.log("clicked");
+         }
+      else {
+         console.log("nah");
+      }
+   }
+   
+   cnv6.onmousemove = (e) =>{
+      if(draggable){
+         current6X = e.layerX;
+         current6Y = e.layerY;
+     }
+   }
+   cnv6.onmouseup = (e) =>{
+      draggable = false;
+   }
+   
+   cnv6.onmouseout = (e) =>{
+      draggable = false;
+   }
+   
+   
+   window.onresize = () => {
+      cnv6.width = innerWidth/5*2
+      cnv6.height = innerHeight/4
+   }
+   });
+
+
+
+
+
 //----------------------------------------------------
 
 // function dropHandler(ev) {

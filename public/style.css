@@ -1,11 +1,12 @@
 body{
-  overflow: hidden;
+  /* overflow: hidden; */
+  
 }
 .outer {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(4,1fr);
-}
+  }
 /* 
 #myCanvas{
   position: absolute;
@@ -68,7 +69,7 @@ body{
 }
 
 #box5{
-  /* border: 2px solid red; */
+  border: 2px solid blue;
   height: 100%;
 }
 
@@ -79,7 +80,7 @@ body{
 }
 
 #box6{
-  /* border: 2px solid red; */
+  border: 2px solid blue;
   height: 100%;
 }
 
@@ -89,7 +90,7 @@ body{
   grid-row: 4/5;
 }
 #box7{
-  border: 2px solid red;
+  /* border: 2px solid blue; */
   /* height: 100%; */
 }
 
