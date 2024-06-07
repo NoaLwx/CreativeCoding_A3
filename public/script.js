@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 const cnv = document.querySelector("#box1");
 cnv.width = innerWidth/5;
-cnv.height = innerHeight/4;
+cnv.height = innerHeight/4*3;
 
 const ctx = cnv.getContext (`2d`);
 
@@ -60,7 +60,7 @@ uploader.addEventListener('change',(e) => {
          // img.width = 200;
          // img.height = 200;
 
-         ctx.drawImage(img, currentX - img.width/4, currentY - img.height/4, img.width/2, img.height/2);
+         ctx.drawImage(img, currentX - img.width/4, currentY - img.height/4, img.width/1.5, img.height/1.5);
       }, 200);
 
    };   
@@ -110,7 +110,7 @@ cnv.onmouseout = (e) =>{
 
 window.onresize = () => {
    cnv.width = innerWidth/5
-   cnv.height = innerHeight
+   cnv.height = innerHeight/4*3;
 }
 });
 
@@ -207,3 +207,219 @@ window.onresize = () => {
    cnv2.height = innerHeight/4
 }
 });
+
+
+//canvas3----------------------------------------
+
+document.addEventListener('DOMContentLoaded', function() {
+
+   const cnv3 = document.querySelector("#box3");
+   cnv3.width = innerWidth/5;
+   cnv3.height = innerHeight/4;
+   
+   const ctx3 = cnv3.getContext (`2d`);
+   
+   let img3 = null; 
+   let draggable = false;
+   let current3X = cnv3.width/2; 
+   let current3Y = cnv3.height/2; 
+   
+   const uploader3 = document.querySelector("#uploader3");
+   const inputBox3 = document.querySelector(".form-group.three");
+   
+   
+   uploader3.addEventListener('change',(e) => {
+      console.log('upload');
+      const myFile3 = uploader3.files[0];
+      console.log(myFile3.name);
+   
+      img3 = new Image();
+      img3.src = URL.createObjectURL(myFile3);
+      
+      const resetCanvas = () =>{
+         ctx3.fillStyle = `white`
+         ctx3.fillRect (0, 0, innerWidth, innerHeight)
+      }
+     
+      img3.onload = () => {
+         setInterval(()=>{
+            resetCanvas();
+   
+            ctx3.drawImage(img3, current3X - img3.width/6, current3Y - img3.height/6, img3.width/3, img3.height/3);
+         }, 200);
+   
+      };   
+   
+   setTimeout(() => {
+         inputBox3.classList.toggle("hide");
+     }, 100);
+   
+    });
+   
+   cnv3.addEventListener("dblclick", toggleInputVisibility)
+   
+    function toggleInputVisibility() {
+      inputBox3.classList.toggle("hide");
+    }
+   
+   //detech if the click is on the image
+   cnv3.onmousedown = (e) =>{
+   
+      if (img3!== null &&
+         e.layerX < (current3X + img3.width) &&
+         e.layerX > (current3X - img3.width) &&
+         e.layerY < (current3Y + img3.height/2) &&
+         e.layerY > (current3Y - img3.height/2))
+         {
+            draggable = true;
+            console.log("clicked");
+         }
+      else {
+         console.log("nah");
+      }
+   }
+   
+   cnv3.onmousemove = (e) =>{
+      if(draggable){
+         current3X = e.layerX;
+         current3Y = e.layerY;
+     }
+   }
+   cnv3.onmouseup = (e) =>{
+      draggable = false;
+   }
+   
+   cnv3.onmouseout = (e) =>{
+      draggable = false;
+   }
+   
+   
+   window.onresize = () => {
+      cnv3.width = innerWidth/5
+      cnv3.height = innerHeight/4
+   }
+   });
+   
+//canvas4----------------------------------------
+
+document.addEventListener('DOMContentLoaded', function() {
+
+   const cnv4 = document.querySelector("#box4");
+   cnv4.width = innerWidth/5*2;
+   cnv4.height = innerHeight/4;
+   
+   const ctx4 = cnv4.getContext (`2d`);
+   
+   let img4 = null; 
+   let draggable = false;
+   let current4X = cnv4.width/2; 
+   let current4Y = cnv4.height/2; 
+   
+   const uploader4 = document.querySelector("#uploader4");
+   const inputBox4 = document.querySelector(".form-group.four");
+   
+   
+   uploader4.addEventListener('change',(e) => {
+      console.log('upload');
+      const myFile4 = uploader4.files[0];
+      console.log(myFile4.name);
+   
+      img4 = new Image();
+      img4.src = URL.createObjectURL(myFile4);
+      
+      const resetCanvas = () =>{
+         ctx4.fillStyle = `white`
+         ctx4.fillRect (0, 0, innerWidth, innerHeight)
+      }
+     
+      img4.onload = () => {
+         setInterval(()=>{
+            resetCanvas();
+   
+            ctx4.drawImage(img4, current4X - img4.width/6, current4Y - img4.height/6, img4.width/2, img4.height/2);
+         }, 200);
+   
+      };   
+   
+   setTimeout(() => {
+         inputBox4.classList.toggle("hide");
+     }, 100);
+   
+    });
+   
+   cnv4.addEventListener("dblclick", toggleInputVisibility)
+   
+    function toggleInputVisibility() {
+      inputBox4.classList.toggle("hide");
+    }
+   
+   //detech if the click is on the image
+   cnv4.onmousedown = (e) =>{
+   
+      if (img4!== null &&
+         e.layerX < (current4X + img4.width) &&
+         e.layerX > (current4X - img4.width) &&
+         e.layerY < (current4Y + img4.height/2) &&
+         e.layerY > (current4Y - img4.height/2))
+         {
+            draggable = true;
+            console.log("clicked");
+         }
+      else {
+         console.log("nah");
+      }
+   }
+   
+   cnv4.onmousemove = (e) =>{
+      if(draggable){
+         current4X = e.layerX;
+         current4Y = e.layerY;
+     }
+   }
+   cnv4.onmouseup = (e) =>{
+      draggable = false;
+   }
+   
+   cnv4.onmouseout = (e) =>{
+      draggable = false;
+   }
+   
+   
+   window.onresize = () => {
+      cnv4.width = innerWidth/5
+      cnv4.height = innerHeight/4
+   }
+   });
+//----------------------------------------------------
+
+// function dropHandler(ev) {
+//    console.log("File(s) dropped");
+ 
+//    // Prevent default behavior (Prevent file from being opened)
+//    ev.preventDefault();
+ 
+//    if (ev.dataTransfer.items) {
+//      // Use DataTransferItemList interface to access the file(s)
+//      [...ev.dataTransfer.items].forEach((item, i) => {
+//        // If dropped items aren't files, reject them
+//        if (item.kind === "file") {
+//          const file = item.getAsFile();
+//          console.log(`… file[${i}].name = ${file.name}`);
+//        }
+//      });
+//    } else {
+//      // Use DataTransfer interface to access the file(s)
+//      [...ev.dataTransfer.files].forEach((file, i) => {
+//        console.log(`… file[${i}].name = ${file.name}`);
+//      });
+//    }
+//  }
+
+//  function dragOverHandler(ev) {
+//    console.log("File(s) in drop zone");
+ 
+//    // Prevent default behavior (Prevent file from being opened)
+//    ev.preventDefault();
+//  }
+ 
+ 

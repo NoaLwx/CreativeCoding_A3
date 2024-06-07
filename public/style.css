@@ -1,12 +1,10 @@
 body{
-  padding: 10;
   overflow: hidden;
 }
 .outer {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(4,1fr);
-    margin: 10px;
 }
 /* 
 #myCanvas{
@@ -14,24 +12,109 @@ body{
 
 } */
 
+
+.container{
+  position: relative;
+}
+
+/* ------------------------------------------------ */
 .container.one{
+  border: 2px solid red;
   grid-column: 1/2;
   grid-row: 1/4;
 }
 
 #box1{
-    /* border: 2px solid red; */
-    grid-column: 1/2;
-    grid-row: 1/4;
+  /* border: 2px solid red; */
+  height: 100%;
 }
 
+.container.two{
+  border: 2px solid red;
+  grid-column: 2/3;
+  grid-row: 1/2;
+}
 #box2{
-    /* border: 2px solid red; */
+  /* border: 2px solid blue; */
+  height: 100%;
 }
 
-.container{
-  position: relative;
+.container.three{
+  border: 2px solid red;
+  grid-column: 3/4;
+  grid-row: 1/2;
 }
+
+#box3{
+  /* border: 2px solid blue; */
+  height: 100%;
+}
+
+.container.four{
+  border: 2px solid red;
+  grid-column: 4/6;
+  grid-row: 1/2;
+}
+
+#box4{
+  /* border: 2px solid blue; */
+  height: 100%;
+}
+
+.container.five{
+  border: 2px solid red;
+  grid-column: 2/4;
+  grid-row: 2/4;
+}
+
+#box5{
+  /* border: 2px solid red; */
+  height: 100%;
+}
+
+.container.six{
+  border: 2px solid red;
+  grid-column: 1/3;
+  grid-row: 4/5;
+}
+
+#box6{
+  /* border: 2px solid red; */
+  height: 100%;
+}
+
+.container.seven{
+  border: 2px solid red;
+  grid-column: 3/5;
+  grid-row: 4/5;
+}
+#box7{
+  border: 2px solid red;
+  /* height: 100%; */
+}
+
+.container.eight{
+  border: 2px solid red;
+  grid-column: 4/5;
+  grid-row: 2/4;
+}
+#box8{
+  border: 2px solid red;
+  /* height: 100%; */
+}
+
+.container.nine{
+  border: 2px solid red;
+  grid-column: 5/6;
+  grid-row: 2/5;
+}
+#box9{
+  border: 2px solid red;
+  /* height: 100%; */
+}
+
+/* ------------------------------------ */
+
 .form-group {
   display: flex; 
   justify-content: center; 
@@ -75,3 +158,7 @@ i {
    }
 
 
+.drop1{
+  border: 2px solid blue;
+  
+}
