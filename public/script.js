@@ -98,6 +98,12 @@ uploader.addEventListener('change',(e) => {
 
          ctx.drawImage(img, currentX - img.width/8, currentY - img.height/8, img.width/4, img.height/4);
       }, 200);
+      
+      localStorage.setItem('canvasState', JSON.stringify({
+         width: cnv.width,
+         height: cnv.height
+     }));
+
 
    };   
 
