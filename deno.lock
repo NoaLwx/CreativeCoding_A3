@@ -1,5 +1,8 @@
 {
   "version": "3",
+  "redirects": {
+    "https://deno.land/x/local_ip/mod.ts": "https://deno.land/x/local_ip@0.0.3/mod.ts"
+  },
   "remote": {
     "https://deno.land/std@0.116.0/async/deadline.ts": "1d6ac7aeaee22f75eb86e4e105d6161118aad7b41ae2dd14f4cfd3bf97472b93",
     "https://deno.land/std@0.116.0/async/debounce.ts": "b2f693e4baa16b62793fd618de6c003b63228db50ecfe3bd51fc5f6dc0bc264b",
@@ -62,6 +65,7 @@
     "https://deno.land/std@0.99.0/path/posix.ts": "f56c3c99feb47f30a40ce9d252ef6f00296fa7c0fcb6dd81211bdb3b8b99ca3b",
     "https://deno.land/std@0.99.0/path/separator.ts": "8fdcf289b1b76fd726a508f57d3370ca029ae6976fcde5044007f062e643ff1c",
     "https://deno.land/std@0.99.0/path/win32.ts": "77f7b3604e0de40f3a7c698e8a79e7f601dc187035a1c21cb1e596666ce112f8",
+    "https://deno.land/x/local_ip@0.0.3/mod.ts": "8c5ebbca332af704f39cf83aac68cceff9f2afe1dc42e8a10dfe53bf8d347ae9",
     "https://deno.land/x/media_types@v2.7.1/db.ts": "1d95aa3fc1fe076638550640609394f0e157b18b430800e419aa7ece5c151d9c",
     "https://deno.land/x/media_types@v2.7.1/deps.ts": "cd4c31e4b5ed8c4d8c61bd2fb38a82d68d3fd2dcf6d43f22511cbe6d9d310e51",
     "https://deno.land/x/media_types@v2.7.1/mod.ts": "d63583b978d32eff8b76e1ae5d83cba2fb27baa90cc1bcb0ad15a06122ea8c19",

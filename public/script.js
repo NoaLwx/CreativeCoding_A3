@@ -1,8 +1,22 @@
 const socket = new WebSocket (`ws://localhost/`)
-socket.onopen  = () => console.log (`client websocket opened!`)
-socket.onclose = () => console.log (`client websocket closed!`)
-socket.onerror   = e => console.dir (e)
-socket.onmessage = e => console.dir (e)
+socket.onopen  = () => console.log (`client websocket opened`)
+socket.onclose = () => console.log (`client websocket closed`)
+socket.onerror =  e => console.dir (e)
+
+const squares = []
+
+socket.onmessage = e => {
+    console.log (`websocket message received:`)
+
+    // convert the string back into an object
+    const pos = JSON.parse (e.data)
+
+    // add the position object to the squares array
+    squares.push (pos)
+
+    // display the position object in the console
+    console.dir (pos)
+}
 
 
 // // Get the canvas
@@ -10,6 +24,7 @@ socket.onmessage = e => console.dir (e)
 // // Convert the canvas to data
 // var image = canvas.toDataURL();
 // // Create a link
+
 // var aDownloadLink = document.createElement('a');
 // // Add the name of the file to the link
 // aDownloadLink.download = 'canvas_image.png';
