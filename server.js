@@ -5,35 +5,21 @@ serve (handler, { port: 80 })
 
 function handler (incoming_req) {
 
-    // console.log (incoming_req)
-
     let req = incoming_req
 
     const upgrade = req.headers.get ("upgrade") || ""
 
-    // if the requested url does not specify a filename
-
+    // check if it is an upgrade request
     if (upgrade.toLowerCase() == "websocket") {
         const { socket, response } = Deno.upgradeWebSocket (req)
-        // return response
-        socket.onopen  = () => {
-            console.log (`server WebSocket opened!`)
-    
-            // sending a message to the client
-            socket.send (`hello from server.js!`)
+        return response
     }
-}
 
     if (req.url.endsWith (`/`)) {
-
-        // add 'index.html' to the url
         req = new Request (`${ req.url }index.html`, req)
     }
 
     const options = {
-
-        // route requests to this
-        // directory in the file system
         fsRoot: `public`
     }
 
