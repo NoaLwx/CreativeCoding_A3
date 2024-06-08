@@ -57,9 +57,6 @@ if (savedState.width && savedState.height) {
     localStorage.setItem('canvasState', JSON.stringify({width: cnv.width, height: cnv.height}));
 }
 
-
-
-
 // cnv.width = innerWidth/5;
 // cnv.height = innerHeight/4*3;
 
@@ -87,7 +84,7 @@ uploader.addEventListener('change',(e) => {
    
    const resetCanvas = () =>{
       ctx.fillStyle = `black`
-      ctx.fillRect (0, 0, innerWidth, innerHeight)
+      ctx.fillRect (0, 0, cnv.width, cnv.height)
    }
   
    img.onload = () => {
@@ -98,7 +95,7 @@ uploader.addEventListener('change',(e) => {
 
          ctx.drawImage(img, currentX - img.width/8, currentY - img.height/8, img.width/4, img.height/4);
       }, 200);
-      
+
       localStorage.setItem('canvasState', JSON.stringify({
          width: cnv.width,
          height: cnv.height
