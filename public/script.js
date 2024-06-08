@@ -272,7 +272,7 @@ document.addEventListener('DOMContentLoaded', function() {
          setInterval(()=>{
             resetCanvas();
    
-            ctx3.drawImage(img3, current3X - img3.width/6, current3Y - img3.height/6, img3.width/3, img3.height/3);
+            ctx3.drawImage(img3, current3X - img3.width/8, current3Y - img3.height/8, img3.width/4, img3.height/4);
          }, 200);
    
       };   
@@ -374,7 +374,7 @@ document.addEventListener('DOMContentLoaded', function() {
          setInterval(()=>{
             resetCanvas();
    
-            ctx4.drawImage(img4, current4X - img4.width/6, current4Y - img4.height/6, img4.width/2, img4.height/2);
+            ctx4.drawImage(img4, current4X - img4.width/8, current4Y - img4.height/8, img4.width/4, img4.height/4);
          }, 200);
    
       };   
@@ -476,7 +476,7 @@ document.addEventListener('DOMContentLoaded', function() {
          setInterval(()=>{
             resetCanvas();
    
-            ctx5.drawImage(img5, current5X - img5.width/6, current5Y - img5.height/6, img5.width/2, img5.height/2);
+            ctx5.drawImage(img5, current5X - img5.width/8, current5Y - img5.height/8, img5.width/4, img5.height/4);
          }, 200);
    
       };   
@@ -579,7 +579,7 @@ document.addEventListener('DOMContentLoaded', function() {
          setInterval(()=>{
             resetCanvas();
    
-            ctx6.drawImage(img6, current6X - img6.width/6, current6Y - img6.height/6, img6.width/2, img6.height/2);
+            ctx6.drawImage(img6, current6X - img6.width/8, current6Y - img6.height/8, img6.width/4, img6.height/4);
          }, 200);
    
       };   
@@ -683,7 +683,7 @@ document.addEventListener('DOMContentLoaded', function() {
          setInterval(()=>{
             resetCanvas();
    
-            ctx7.drawImage(img7, current7X - img7.width/6, current7Y - img7.height/6, img7.width/2, img7.height/2);
+            ctx7.drawImage(img7, current7X - img7.width/8, current7Y - img7.height/8, img7.width/4, img7.height/4);
          }, 200);
    
       };   
@@ -785,7 +785,7 @@ document.addEventListener('DOMContentLoaded', function() {
          setInterval(()=>{
             resetCanvas();
    
-            ctx8.drawImage(img8, current8X - img8.width/6, current8Y - img8.height/6, img8.width/3, img8.height/3);
+            ctx8.drawImage(img8, current8X - img8.width/8, current8Y - img8.height/8, img8.width/4, img8.height/4);
          }, 200);
    
       };   
@@ -888,7 +888,7 @@ document.addEventListener('DOMContentLoaded', function() {
          setInterval(()=>{
             resetCanvas();
    
-            ctx9.drawImage(img9, current9X - img9.width/6, current9Y - img9.height/6, img9.width, img9.height);
+            ctx9.drawImage(img9, current9X - img9.width/8, current9Y - img9.height/8, img9.width/4, img9.height/4);
          }, 200);
    
       };   
