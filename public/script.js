@@ -41,7 +41,6 @@ socket.onmessage = e => {
 
 document.addEventListener('DOMContentLoaded', function() {
 
-
 const cnv = document.querySelector("#box1");
 cnv.width = innerWidth/5;
 cnv.height = innerHeight/4*3;
