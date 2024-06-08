@@ -42,8 +42,26 @@ socket.onmessage = e => {
 document.addEventListener('DOMContentLoaded', function() {
 
 const cnv = document.querySelector("#box1");
-cnv.width = innerWidth/5;
-cnv.height = innerHeight/4*3;
+
+let savedState = JSON.parse(localStorage.getItem('canvasState')) || {};
+
+// Restore canvas state if available
+if (savedState.width && savedState.height) {
+    cnv.width = savedState.width;
+    cnv.height = savedState.height;
+    cnv.style.width = `${savedState.width}px`;
+    cnv.style.height = `${savedState.height}px`;
+} else {
+    cnv.width = window.innerWidth / 5;
+    cnv.height = window.innerHeight / 4 * 3;
+    localStorage.setItem('canvasState', JSON.stringify({width: cnv.width, height: cnv.height}));
+}
+
+
+
+
+// cnv.width = innerWidth/5;
+// cnv.height = innerHeight/4*3;
 
 const ctx = cnv.getContext (`2d`);
 
@@ -140,6 +158,8 @@ cnv.onmouseout = (e) =>{
 window.onresize = () => {
    cnv.width = innerWidth/5
    cnv.height = innerHeight/4*3;
+   localStorage.setItem('canvasState', JSON.stringify({width: cnv.width, height: cnv.height}));
+
 }
 });
 
