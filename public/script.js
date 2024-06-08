@@ -1,6 +1,8 @@
 const socket = new WebSocket (`ws://localhost/`)
-socket.onopen = () => console.log (`client websocket opened!`)
-
+socket.onopen  = () => console.log (`client websocket opened!`)
+socket.onclose = () => console.log (`client websocket closed!`)
+socket.onerror   = e => console.dir (e)
+socket.onmessage = e => console.dir (e)
 
 
 // // Get the canvas
