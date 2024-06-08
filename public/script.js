@@ -18,7 +18,6 @@ socket.onopen = () => console.log (`client websocket opened!`)
 
 
 
-
 //canvas1---------------------------------------
 // const myDiv = document.querySelector('.container');
 
@@ -35,7 +34,10 @@ const ctx = cnv.getContext (`2d`);
 let img = null; 
 let draggable = false;
 let currentX = cnv.width/2; 
-let currentY = cnv.height/2; 
+let currentY = cnv.height/2;
+
+let lastMouseX = 0;
+let lastMouseY = 0;
 
 const uploader = document.querySelector("#uploader");
 const inputBox = document.querySelector(".form-group.one");
@@ -50,7 +52,7 @@ uploader.addEventListener('change',(e) => {
    img.src = URL.createObjectURL(myFile);
    
    const resetCanvas = () =>{
-      ctx.fillStyle = `white`
+      ctx.fillStyle = `black`
       ctx.fillRect (0, 0, innerWidth, innerHeight)
    }
   
@@ -60,7 +62,7 @@ uploader.addEventListener('change',(e) => {
          // img.width = 200;
          // img.height = 200;
 
-         ctx.drawImage(img, currentX - img.width/4, currentY - img.height/4, img.width/1.5, img.height/1.5);
+         ctx.drawImage(img, currentX - img.width/8, currentY - img.height/8, img.width/4, img.height/4);
       }, 200);
 
    };   
@@ -87,7 +89,9 @@ cnv.onmousedown = (e) =>{
       e.layerY > (currentY - img.height/2))
       {
          draggable = true;
-         console.log("clicked");
+         lastMouseX = e.layerX; 
+         lastMouseY = e.layerY;
+         // console.log("clicked");
       }
    else {
       console.log("nah");
@@ -96,8 +100,17 @@ cnv.onmousedown = (e) =>{
 
 cnv.onmousemove = (e) =>{
    if(draggable){
-      currentX = e.layerX;
-      currentY = e.layerY;
+      const deltaX = e.layerX - lastMouseX;
+      const deltaY = e.layerY - lastMouseY;
+      
+      // Update the image's position based on the mouse movement
+      currentX += deltaX;
+      currentY += deltaY;
+      
+      // Update the last mouse position
+      lastMouseX = e.layerX;
+      lastMouseY = e.layerY;
+     
   }
 }
 cnv.onmouseup = (e) =>{
@@ -132,6 +145,9 @@ let draggable = false;
 let current2X = cnv2.width/2; 
 let current2Y = cnv2.height/2; 
 
+let lastMouseX = 0;
+let lastMouseY = 0;
+
 const uploader2 = document.querySelector("#uploader2");
 const inputBox2 = document.querySelector(".form-group.two");
 
@@ -145,7 +161,7 @@ uploader2.addEventListener('change',(e) => {
    img2.src = URL.createObjectURL(myFile2);
    
    const resetCanvas = () =>{
-      ctx2.fillStyle = `white`
+      ctx2.fillStyle = `black`
       ctx2.fillRect (0, 0, innerWidth, innerHeight)
    }
   
@@ -153,7 +169,7 @@ uploader2.addEventListener('change',(e) => {
       setInterval(()=>{
          resetCanvas();
 
-         ctx2.drawImage(img2, current2X - img2.width/6, current2Y - img2.height/6, img2.width/3, img2.height/3);
+         ctx2.drawImage(img2, current2X - img2.width/8, current2Y - img2.height/8, img2.width/4, img2.height/4);
       }, 200);
 
    };   
@@ -180,7 +196,9 @@ cnv2.onmousedown = (e) =>{
       e.layerY > (current2Y - img2.height/2))
       {
          draggable = true;
-         console.log("clicked");
+         lastMouseX = e.layerX; 
+         lastMouseY = e.layerY;
+         // console.log("clicked");
       }
    else {
       console.log("nah");
@@ -189,8 +207,14 @@ cnv2.onmousedown = (e) =>{
 
 cnv2.onmousemove = (e) =>{
    if(draggable){
-      current2X = e.layerX;
-      current2Y = e.layerY;
+      const deltaX = e.layerX - lastMouseX;
+      const deltaY = e.layerY - lastMouseY;
+      
+      current2X += deltaX;
+      current2Y += deltaY;
+      
+      lastMouseX = e.layerX;
+      lastMouseY = e.layerY;
   }
 }
 cnv2.onmouseup = (e) =>{
@@ -223,6 +247,9 @@ document.addEventListener('DOMContentLoaded', function() {
    let draggable = false;
    let current3X = cnv3.width/2; 
    let current3Y = cnv3.height/2; 
+
+   let lastMouseX = 0;
+   let lastMouseY = 0;
    
    const uploader3 = document.querySelector("#uploader3");
    const inputBox3 = document.querySelector(".form-group.three");
@@ -237,7 +264,7 @@ document.addEventListener('DOMContentLoaded', function() {
       img3.src = URL.createObjectURL(myFile3);
       
       const resetCanvas = () =>{
-         ctx3.fillStyle = `white`
+         ctx3.fillStyle = `black`
          ctx3.fillRect (0, 0, innerWidth, innerHeight)
       }
      
@@ -272,7 +299,9 @@ document.addEventListener('DOMContentLoaded', function() {
          e.layerY > (current3Y - img3.height/2))
          {
             draggable = true;
-            console.log("clicked");
+            lastMouseX = e.layerX; 
+            lastMouseY = e.layerY;
+            // console.log("clicked");
          }
       else {
          console.log("nah");
@@ -281,8 +310,14 @@ document.addEventListener('DOMContentLoaded', function() {
    
    cnv3.onmousemove = (e) =>{
       if(draggable){
-         current3X = e.layerX;
-         current3Y = e.layerY;
+         const deltaX = e.layerX - lastMouseX;
+         const deltaY = e.layerY - lastMouseY;
+      
+         current3X += deltaX;
+         current3Y += deltaY;
+      
+         lastMouseX = e.layerX;
+         lastMouseY = e.layerY;
      }
    }
    cnv3.onmouseup = (e) =>{
@@ -313,7 +348,10 @@ document.addEventListener('DOMContentLoaded', function() {
    let img4 = null; 
    let draggable = false;
    let current4X = cnv4.width/2; 
-   let current4Y = cnv4.height/2; 
+   let current4Y = cnv4.height/2;
+   
+   let lastMouseX = 0;
+   let lastMouseY = 0;
    
    const uploader4 = document.querySelector("#uploader4");
    const inputBox4 = document.querySelector(".form-group.four");
@@ -328,7 +366,7 @@ document.addEventListener('DOMContentLoaded', function() {
       img4.src = URL.createObjectURL(myFile4);
       
       const resetCanvas = () =>{
-         ctx4.fillStyle = `white`
+         ctx4.fillStyle = `black`
          ctx4.fillRect (0, 0, innerWidth, innerHeight)
       }
      
@@ -363,7 +401,9 @@ document.addEventListener('DOMContentLoaded', function() {
          e.layerY > (current4Y - img4.height/2))
          {
             draggable = true;
-            console.log("clicked");
+            lastMouseX = e.layerX; 
+            lastMouseY = e.layerY;
+            // console.log("clicked");
          }
       else {
          console.log("nah");
@@ -372,8 +412,14 @@ document.addEventListener('DOMContentLoaded', function() {
    
    cnv4.onmousemove = (e) =>{
       if(draggable){
-         current4X = e.layerX;
-         current4Y = e.layerY;
+         const deltaX = e.layerX - lastMouseX;
+         const deltaY = e.layerY - lastMouseY;
+      
+         current4X += deltaX;
+         current4Y += deltaY;
+      
+         lastMouseX = e.layerX;
+         lastMouseY = e.layerY;
      }
    }
    cnv4.onmouseup = (e) =>{
@@ -404,7 +450,10 @@ document.addEventListener('DOMContentLoaded', function() {
    let img5 = null; 
    let draggable = false;
    let current5X = cnv5.width/2; 
-   let current5Y = cnv5.height/2; 
+   let current5Y = cnv5.height/2;
+   
+   let lastMouseX = 0;
+   let lastMouseY = 0;
    
    const uploader5 = document.querySelector("#uploader5");
    const inputBox5 = document.querySelector(".form-group.five");
@@ -419,7 +468,7 @@ document.addEventListener('DOMContentLoaded', function() {
       img5.src = URL.createObjectURL(myFile5);
       
       const resetCanvas = () =>{
-         ctx5.fillStyle = `white`
+         ctx5.fillStyle = `black`
          ctx5.fillRect (0, 0, innerWidth, innerHeight)
       }
      
@@ -454,7 +503,9 @@ document.addEventListener('DOMContentLoaded', function() {
          e.layerY > (current5Y - img5.height/2))
          {
             draggable = true;
-            console.log("clicked");
+            lastMouseX = e.layerX; 
+            lastMouseY = e.layerY;
+            // console.log("clicked");
          }
       else {
          console.log("nah");
@@ -463,8 +514,14 @@ document.addEventListener('DOMContentLoaded', function() {
    
    cnv5.onmousemove = (e) =>{
       if(draggable){
-         current5X = e.layerX;
-         current5Y = e.layerY;
+         const deltaX = e.layerX - lastMouseX;
+         const deltaY = e.layerY - lastMouseY;
+      
+         current5X += deltaX;
+         current5Y += deltaY;
+      
+         lastMouseX = e.layerX;
+         lastMouseY = e.layerY;
      }
    }
    cnv5.onmouseup = (e) =>{
@@ -497,6 +554,9 @@ document.addEventListener('DOMContentLoaded', function() {
    let draggable = false;
    let current6X = cnv6.width/2; 
    let current6Y = cnv6.height/2; 
+
+   let lastMouseX = 0;
+   let lastMouseY = 0;
    
    const uploader6 = document.querySelector("#uploader6");
    const inputBox6 = document.querySelector(".form-group.six");
@@ -511,7 +571,7 @@ document.addEventListener('DOMContentLoaded', function() {
       img6.src = URL.createObjectURL(myFile6);
       
       const resetCanvas = () =>{
-         ctx6.fillStyle = `white`
+         ctx6.fillStyle = `black`
          ctx6.fillRect (0, 0, innerWidth, innerHeight)
       }
      
@@ -534,6 +594,7 @@ document.addEventListener('DOMContentLoaded', function() {
    
     function toggleInputVisibility() {
          inputBox6.classList.toggle("hide");
+         console.log("toggle");
     }
    
    //detech if the click is on the image
@@ -546,7 +607,9 @@ document.addEventListener('DOMContentLoaded', function() {
          e.layerY > (current6Y - img6.height/2))
          {
             draggable = true;
-            console.log("clicked");
+            lastMouseX = e.layerX; 
+            lastMouseY = e.layerY;
+            // console.log("clicked");
          }
       else {
          console.log("nah");
@@ -555,8 +618,14 @@ document.addEventListener('DOMContentLoaded', function() {
    
    cnv6.onmousemove = (e) =>{
       if(draggable){
-         current6X = e.layerX;
-         current6Y = e.layerY;
+         const deltaX = e.layerX - lastMouseX;
+         const deltaY = e.layerY - lastMouseY;
+      
+         current6X += deltaX;
+         current6Y += deltaY;
+      
+         lastMouseX = e.layerX;
+         lastMouseY = e.layerY;
      }
    }
    cnv6.onmouseup = (e) =>{
@@ -575,9 +644,312 @@ document.addEventListener('DOMContentLoaded', function() {
    });
 
 
+//canvas7----------------------------------------
+
+document.addEventListener('DOMContentLoaded', function() {
+
+   const cnv7 = document.querySelector("#box7");
+   cnv7.width = innerWidth/5*2;
+   cnv7.height = innerHeight/4;
+   
+   const ctx7 = cnv7.getContext (`2d`);
+   
+   let img7 = null; 
+   let draggable = false;
+   let current7X = cnv7.width/2; 
+   let current7Y = cnv7.height/2; 
+
+   let lastMouseX = 0;
+   let lastMouseY = 0;  
+   
+   const uploader7 = document.querySelector("#uploader7");
+   const inputBox7 = document.querySelector(".form-group.seven");
+   
+   
+   uploader7.addEventListener('change',(e) => {
+      console.log('upload');
+      const myFile7 = uploader7.files[0];
+      console.log(myFile7.name);
+   
+      img7 = new Image();
+      img7.src = URL.createObjectURL(myFile7);
+      
+      const resetCanvas = () =>{
+         ctx7.fillStyle = `black`
+         ctx7.fillRect (0, 0, innerWidth, innerHeight)
+      }
+     
+      img7.onload = () => {
+         setInterval(()=>{
+            resetCanvas();
+   
+            ctx7.drawImage(img7, current7X - img7.width/6, current7Y - img7.height/6, img7.width/2, img7.height/2);
+         }, 200);
+   
+      };   
+   
+   setTimeout(() => {
+         inputBox7.classList.toggle("hide");
+     }, 100);
+   
+    });
+   
+   cnv7.addEventListener("dblclick", toggleInputVisibility)
+   
+    function toggleInputVisibility() {
+      inputBox7.classList.toggle("hide");
+    }
+   
+   //detech if the click is on the image
+   cnv7.onmousedown = (e) =>{
+   
+      if (img7!== null &&
+         e.layerX < (current7X + img7.width) &&
+         e.layerX > (current7X - img7.width) &&
+         e.layerY < (current7Y + img7.height/2) &&
+         e.layerY > (current7Y - img7.height/2))
+         {
+            draggable = true;
+            lastMouseX = e.layerX; 
+            lastMouseY = e.layerY;
+            // console.log("clicked");
+         }
+      else {
+         console.log("nah");
+      }
+   }
+   
+   cnv7.onmousemove = (e) =>{
+      if(draggable){
+         const deltaX = e.layerX - lastMouseX;
+         const deltaY = e.layerY - lastMouseY;
+      
+         current7X += deltaX;
+         current7Y += deltaY;
+      
+         lastMouseX = e.layerX;
+         lastMouseY = e.layerY;
+     }
+   }
+   cnv7.onmouseup = (e) =>{
+      draggable = false;
+   }
+   
+   cnv7.onmouseout = (e) =>{
+      draggable = false;
+   }
+   
+   
+   window.onresize = () => {
+      cnv7.width = innerWidth/5*2
+      cnv7.height = innerHeight/4
+   }
+   });
+
+//canvas8----------------------------------------
+
+document.addEventListener('DOMContentLoaded', function() {
+
+   const cnv8 = document.querySelector("#box8");
+   cnv8.width = innerWidth/5;
+   cnv8.height = innerHeight/4*2;
+   
+   const ctx8 = cnv8.getContext (`2d`);
+   
+   let img8 = null; 
+   let draggable = false;
+   let current8X = cnv8.width/2; 
+   let current8Y = cnv8.height/2; 
+
+   let lastMouseX = 0;
+   let lastMouseY = 0;
+   
+   const uploader8 = document.querySelector("#uploader8");
+   const inputBox8 = document.querySelector(".form-group.eight");
+   
+   
+   uploader8.addEventListener('change',(e) => {
+      console.log('upload');
+      const myFile8 = uploader8.files[0];
+      console.log(myFile8.name);
+   
+      img8 = new Image();
+      img8.src = URL.createObjectURL(myFile8);
+      
+      const resetCanvas = () =>{
+         ctx8.fillStyle = `black`
+         ctx8.fillRect (0, 0, innerWidth, innerHeight)
+      }
+     
+      img8.onload = () => {
+         setInterval(()=>{
+            resetCanvas();
+   
+            ctx8.drawImage(img8, current8X - img8.width/6, current8Y - img8.height/6, img8.width/3, img8.height/3);
+         }, 200);
+   
+      };   
+   
+   setTimeout(() => {
+         inputBox8.classList.toggle("hide");
+     }, 100);
+   
+    });
+   
+   cnv8.addEventListener("dblclick", toggleInputVisibility)
+   
+    function toggleInputVisibility() {
+      inputBox8.classList.toggle("hide");
+    }
+   
+   //detech if the click is on the image
+   cnv8.onmousedown = (e) =>{
+   
+      if (img8!== null &&
+         e.layerX < (current8X + img8.width) &&
+         e.layerX > (current8X - img8.width) &&
+         e.layerY < (current8Y + img8.height/2) &&
+         e.layerY > (current8Y - img8.height/2))
+         {
+            draggable = true;
+            lastMouseX = e.layerX; 
+            lastMouseY = e.layerY;
+            // console.log("clicked");
+         }
+      else {
+         console.log("nah");
+      }
+   }
+   
+   cnv8.onmousemove = (e) =>{
+      if(draggable){
+         const deltaX = e.layerX - lastMouseX;
+         const deltaY = e.layerY - lastMouseY;
+      
+         current8X += deltaX;
+         current8Y += deltaY;
+      
+         lastMouseX = e.layerX;
+         lastMouseY = e.layerY;
+     }
+   }
+   cnv8.onmouseup = (e) =>{
+      draggable = false;
+   }
+   
+   cnv8.onmouseout = (e) =>{
+      draggable = false;
+   }
+   
+   
+   window.onresize = () => {
+      cnv8.width = innerWidth/5
+      cnv8.height = innerHeight/4*2
+   }
+   });
 
 
+//canvas9----------------------------------------
 
+document.addEventListener('DOMContentLoaded', function() {
+
+   const cnv9 = document.querySelector("#box9");
+   cnv9.width = innerWidth/5;
+   cnv9.height = innerHeight/4*3;
+   
+   const ctx9 = cnv9.getContext (`2d`);
+   
+   let img9 = null; 
+   let draggable = false;
+   let current9X = cnv9.width/2; 
+   let current9Y = cnv9.height/2; 
+   
+   let lastMouseX = 0;
+   let lastMouseY = 0;
+   
+   const uploader9 = document.querySelector("#uploader9");
+   const inputBox9 = document.querySelector(".form-group.nine");
+   
+   
+   uploader9.addEventListener('change',(e) => {
+      console.log('upload');
+      const myFile9 = uploader9.files[0];
+      console.log(myFile9.name);
+   
+      img9 = new Image();
+      img9.src = URL.createObjectURL(myFile9);
+      
+      const resetCanvas = () =>{
+         ctx9.fillStyle = `black`
+         ctx9.fillRect (0, 0, innerWidth, innerHeight)
+      }
+     
+      img9.onload = () => {
+         setInterval(()=>{
+            resetCanvas();
+   
+            ctx9.drawImage(img9, current9X - img9.width/6, current9Y - img9.height/6, img9.width, img9.height);
+         }, 200);
+   
+      };   
+   
+   setTimeout(() => {
+         inputBox9.classList.toggle("hide");
+     }, 100);
+   
+    });
+   
+   cnv9.addEventListener("dblclick", toggleInputVisibility)
+   
+    function toggleInputVisibility() {
+      inputBox9.classList.toggle("hide");
+    }
+   
+   //detech if the click is on the image
+   cnv9.onmousedown = (e) =>{
+   
+      if (img9!== null &&
+         e.layerX < (current9X + img9.width) &&
+         e.layerX > (current9X - img9.width) &&
+         e.layerY < (current9Y + img9.height/2) &&
+         e.layerY > (current9Y - img9.height/2))
+         {
+            draggable = true;
+            lastMouseX = e.layerX; 
+            lastMouseY = e.layerY;
+            // console.log("clicked");
+         }
+      else {
+         console.log("nah");
+      }
+   }
+   
+   cnv9.onmousemove = (e) =>{
+      if(draggable){
+         const deltaX = e.layerX - lastMouseX;
+         const deltaY = e.layerY - lastMouseY;
+      
+         current9X += deltaX;
+         current9Y += deltaY;
+      
+         lastMouseX = e.layerX;
+         lastMouseY = e.layerY;
+     }
+   }
+   cnv9.onmouseup = (e) =>{
+      draggable = false;
+   }
+   
+   cnv9.onmouseout = (e) =>{
+      draggable = false;
+   }
+   
+   
+   window.onresize = () => {
+      cnv9.width = innerWidth/5
+      cnv9.height = innerHeight/4*3
+   }
+   });
 //----------------------------------------------------
 
 // function dropHandler(ev) {
