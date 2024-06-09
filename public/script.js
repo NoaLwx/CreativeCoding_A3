@@ -43,22 +43,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
 const cnv = document.querySelector("#box1");
 
-let savedState = JSON.parse(localStorage.getItem('canvasState')) || {};
+cnv.width = innerWidth/5;
+cnv.height = innerHeight/4*3;
 
-// Restore canvas state if available
-if (savedState.width && savedState.height) {
-    cnv.width = savedState.width;
-    cnv.height = savedState.height;
-    cnv.style.width = `${savedState.width}px`;
-    cnv.style.height = `${savedState.height}px`;
-} else {
-    cnv.width = window.innerWidth / 5;
-    cnv.height = window.innerHeight / 4 * 3;
-    localStorage.setItem('canvasState', JSON.stringify({width: cnv.width, height: cnv.height}));
-}
-
-// cnv.width = innerWidth/5;
-// cnv.height = innerHeight/4*3;
 
 const ctx = cnv.getContext (`2d`);
 
@@ -73,11 +60,15 @@ let lastMouseY = 0;
 const uploader = document.querySelector("#uploader");
 const inputBox = document.querySelector(".form-group.one");
 
+// inputBox = localStorage.getItem("value");
 
 uploader.addEventListener('change',(e) => {
    console.log('upload');
    const myFile = uploader.files[0];
    console.log(myFile.name);
+
+   localStorage.setItem('canvas1', uploader.value);
+   // inputBox = localStorage.getItem("canvas1");
 
    img = new Image();
    img.src = URL.createObjectURL(myFile);
@@ -90,17 +81,11 @@ uploader.addEventListener('change',(e) => {
    img.onload = () => {
       setInterval(()=>{
          resetCanvas();
-         // img.width = 200;
-         // img.height = 200;
-
          ctx.drawImage(img, currentX - img.width/8, currentY - img.height/8, img.width/4, img.height/4);
       }, 200);
 
-      localStorage.setItem('canvasState', JSON.stringify({
-         width: cnv.width,
-         height: cnv.height
-     }));
-
+      console.log(uploader.value);
+      // localStorage.getItem('canvas1');
 
    };   
 
@@ -161,8 +146,6 @@ cnv.onmouseout = (e) =>{
 window.onresize = () => {
    cnv.width = innerWidth/5
    cnv.height = innerHeight/4*3;
-   localStorage.setItem('canvasState', JSON.stringify({width: cnv.width, height: cnv.height}));
-
 }
 });
 
