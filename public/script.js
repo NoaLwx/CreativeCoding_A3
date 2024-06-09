@@ -46,6 +46,23 @@ const cnv = document.querySelector("#box1");
 cnv.width = innerWidth/5;
 cnv.height = innerHeight/4*3;
 
+let dataKey = "canvas1"; // Key used to store the data in localStorage
+let dataType = "imagePath"; // Type of data stored ("imagePath", "text", etc.)
+
+// Retrieve the data from localStorage
+let rawData = localStorage.getItem(dataKey);
+
+// Convert the data to the expected format (e.g., parse JSON)
+let data;
+switch (dataType) {
+  case "imagePath":
+    data = rawData; // Directly use the raw data if it's just a path
+    break;
+  // Add cases for other data types as needed
+  default:
+    console.error("Unsupported data type.");
+    return;
+}
 
 const ctx = cnv.getContext (`2d`);
 
@@ -71,7 +88,7 @@ uploader.addEventListener('change',(e) => {
    // inputBox = localStorage.getItem("canvas1");
 
    img = new Image();
-   img.src = URL.createObjectURL(myFile);
+   img.src = data;
    
    const resetCanvas = () =>{
       ctx.fillStyle = `black`
