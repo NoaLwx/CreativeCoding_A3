@@ -132,16 +132,19 @@ document.addEventListener('DOMContentLoaded', function() {
     cnv.addEventListener('touchend', handleTouchEnd,);
 
    function handleTouchStart(e) {
+      e.preventDefault(); // Prevent scrolling on touch devices
       const touch = e.touches[0];
       handleMouseDown({ layerX: touch.clientX, layerY: touch.clientY });
   }
 
   function handleTouchMove(e) {
+      e.preventDefault(); // Prevent scrolling on touch devices
       const touch = e.touches[0];
       handleMouseMove({ layerX: touch.clientX, layerY: touch.clientY });
   }
 
   function handleTouchEnd(e) {
+      e.preventDefault(); // Prevent scrolling on touch devices
       handleMouseUp();
   }
 
