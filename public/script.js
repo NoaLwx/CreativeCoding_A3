@@ -77,7 +77,12 @@ document.addEventListener('DOMContentLoaded', function() {
         inputBox.classList.toggle("hide");
     }
 
-    cnv.onmousedown = (e) => {
+    cnv.onmousedown = handleMouseDown;
+    cnv.onmousemove = handleMouseMove;
+    cnv.onmouseup = handleMouseUp;
+    cnv.onmouseout = handleMouseOut;
+
+    function handleMouseDown(e) {
         images.forEach((image) => { // Corrected to iterate through images
             if (image.dragging === false && 
                 e.layerX > image.x - image.img.height/8 && 
@@ -92,7 +97,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     };
 
-    cnv.onmousemove = (e) => {
+    function handleMouseMove(e) {
         if (images.some(image => image.dragging)) {
             images.forEach((image) => {
                 if (image.dragging) {
@@ -108,17 +113,40 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     };
 
-    cnv.onmouseup = (e) => {
+    function handleMouseUp(e) {
         images.forEach((image) => {
             image.dragging = false;
         });
     };
 
-    cnv.onmouseout = (e) => {
+    function handleMouseOut(e) {
         images.forEach((image) => {
             image.dragging = false;
         });
     };
+
+
+    
+    cnv.addEventListener('touchstart', handleTouchStart);
+    cnv.addEventListener('touchmove', handleTouchMove,);
+    cnv.addEventListener('touchend', handleTouchEnd,);
+
+   function handleTouchStart(e) {
+      const touch = e.touches[0];
+      handleMouseDown({ layerX: touch.clientX, layerY: touch.clientY });
+  }
+
+  function handleTouchMove(e) {
+      const touch = e.touches[0];
+      handleMouseMove({ layerX: touch.clientX, layerY: touch.clientY });
+  }
+
+  function handleTouchEnd(e) {
+      handleMouseUp();
+  }
+
+
+
 
     window.onresize = () => {
         cnv.width = window.innerWidth;
@@ -145,6 +173,11 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.removeChild(link);
     });
 
+    document.getElementById('deleteBtn').addEventListener('click', function() {
+         ctx.fillStyle = `white`
+         ctx.fillRect (0, 0, innerWidth, innerHeight)
+   
+  });
 });
 
 
