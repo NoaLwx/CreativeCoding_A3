@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let lastMouseY = 0;
 
     const uploader = document.querySelector("#uploader");
-    const inputBox = document.querySelector(".form-group.one");
+    const inputBox = document.querySelector(".form-group");
 
     uploader.addEventListener('change', (e) => {
         console.log('upload');
@@ -121,8 +121,8 @@ document.addEventListener('DOMContentLoaded', function() {
     };
 
     window.onresize = () => {
-        cnv.width = window.innerWidth - 20;
-        cnv.height = window.innerHeight - 20;
+        cnv.width = window.innerWidth;
+        cnv.height = window.innerHeight;
         drawImages(); 
     };
 
