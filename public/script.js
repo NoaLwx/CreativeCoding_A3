@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function drawImages() {
         ctx.clearRect(0, 0, cnv.width, cnv.height);
         images.forEach((image) => {
-            ctx.drawImage(image.img, image.x - image.img.width/16, image.y - image.img.height/16, image.img.width/8, image.img.height/8);
+            ctx.drawImage(image.img, image.x , image.y , image.img.width/8, image.img.height/8);
         });
     }
 
