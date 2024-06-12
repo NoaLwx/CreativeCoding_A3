@@ -85,9 +85,9 @@ document.addEventListener('DOMContentLoaded', function() {
     function handleMouseDown(e) {
         images.forEach((image) => { // Corrected to iterate through images
             if (image.dragging === false && 
-                e.layerX > image.x - image.img.height/8 && 
+                e.layerX > image.x && 
                 e.layerX < image.x + image.img.width/8 && 
-                e.layerY > image.y - image.img.height/8 && 
+                e.layerY > image.y && 
                 e.layerY < image.y + image.img.height/8) 
                 {
                 image.dragging = true;
