@@ -1,0 +1,190 @@
+
+body{
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    
+  }
+  
+  @media screen and (min-aspect-ratio: 2/1) {
+    body {
+        transform: rotate(90deg);
+        transform-origin: 50% 50%;
+        overflow: hidden;
+        height: 100vw;
+        width: 100vh;
+    }
+  }
+  .outer {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      grid-template-rows: repeat(4,1fr);
+      margin: 0;
+      padding: 0;
+      width: 100%;
+    }
+  /* 
+  #myCanvas{
+    position: absolute;
+  
+  } */
+  
+  
+  .container{
+    position: relative;
+  }
+  
+  /* ------------------------------------------------ */
+  .container.one{
+    /* border: 2px solid red; */
+    grid-column: 1/2;
+    grid-row: 1/4;
+    background-color: #ffdadf;
+  }
+  
+  #box1{
+    /* border: 2px solid red; */
+    height: 100%;
+  }
+  
+  .container.two{
+    /* border: 2px solid red; */
+    grid-column: 2/3;
+    grid-row: 1/2;
+    background-color: #fec9c3;
+  }
+  #box2{
+    /* border: 2px solid blue; */
+    height: 100%;
+  }
+  
+  .container.three{
+    /* border: 2px solid red; */
+    grid-column: 3/4;
+    grid-row: 1/2;
+    background-color: #dcc2e0;
+  }
+  
+  #box3{
+    /* border: 2px solid blue; */
+    height: 100%;
+  }
+  
+  .container.four{
+    /* border: 2px solid red; */
+    grid-column: 4/6;
+    grid-row: 1/2;
+    background-color: #c4e9e6;
+  }
+  
+  #box4{
+    /* border: 2px solid blue; */
+    height: 100%;
+  }
+  
+  .container.five{
+    /* border: 2px solid red; */
+    grid-column: 2/4;
+    grid-row: 2/4;
+    background-color: #f9f3aa;
+  }
+  
+  #box5{
+    /* border: 2px solid blue; */
+    height: 100%;
+  }
+  
+  .container.six{
+    /* border: 2px solid red; */
+    grid-column: 1/3;
+    grid-row: 4/5;
+    background-color: #c9ead8;
+  }
+  
+  #box6{
+    /* border: 2px solid blue; */
+    height: 100%;
+  }
+  
+  .container.seven{
+    /* border: 2px solid red; */
+    grid-column: 3/5;
+    grid-row: 4/5;
+    background-color: #ffdadf;
+  }
+  #box7{
+    /* border: 2px solid blue; */
+    height: 100%;
+  }
+  
+  .container.eight{
+    /* border: 2px solid red; */
+    grid-column: 4/5;
+    grid-row: 2/4;
+    background-color: #dcc2e0;
+  }
+  #box8{
+    /* border: 2px solid red; */
+    height: 100%;
+  }
+  
+  .container.nine{
+    /* border: 2px solid red; */
+    grid-column: 5/6;
+    grid-row: 2/5;
+    background-color: #fec9c3;
+  }
+  #box9{
+    /* border: 2px solid red; */
+    height: 100%;
+  }
+  
+  /* ------------------------------------ */
+  
+  .form-group {
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    width: 100%; 
+    height: 100%; 
+    margin: auto;
+    position: absolute;
+  }
+  
+  .form-group.hide{
+      display: none;
+  }
+  
+    input[type=file] {
+    outline: 0;
+    opacity: 0;
+    pointer-events: none;
+    user-select: none;
+  }
+     
+  .label {
+    width: 5vw;
+    height: 5vw;
+    border: 2px dashed grey;
+    border-radius: 5px;
+    display: block;
+    padding: 10px;
+    cursor: pointer;
+    text-align: center;
+    background-color: rgba(250, 250, 250,0.3 );
+      
+  i {
+    display: block;
+    font-size: 2vw;
+  }   
+       
+  &:hover {
+    border: 2px solid black;
+  }
+     }
+  
+  
+  .drop1{
+    border: 2px solid blue;
+    
+  }
