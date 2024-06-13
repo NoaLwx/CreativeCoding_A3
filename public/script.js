@@ -185,9 +185,21 @@ document.addEventListener('DOMContentLoaded', function() {
 
 //-----------------------------------------------------------------------
 
-screen.orientation.addEventListener("change", (event) => {
-    const type = event.target.landscape;
-    const angle = event.target.angle;
-    console.log(`ScreenOrientation change: ${type}, ${angle} degrees.`);
+
+screen.orientation.addEventListener("change", async (event) => {
+    // Correctly access the orientation type and rotation angle
+    const orientationType = event.target.orientation; // e.g., "portrait-primary"
+    const rotationAngle = event.target.rotation; // e.g., 0, 90, 180, or 270
+  
+    // Log the new orientation type and rotation angle to the console
+    console.log(`ScreenOrientation change: ${orientationType}, ${rotationAngle} degrees.`);
+  
+    // Attempt to lock the screen to landscape mode
+    try {
+      await screen.orientation.lock('landscape');
+      console.log('Screen locked to landscape-primary');
+    } catch (error) {
+      console.error('Failed to lock screen to landscape:', error);
+    }
   });
   
