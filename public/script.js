@@ -62,7 +62,7 @@ async function initApp() {
             });
 
             const canvasDataUrl = cnv.toDataURL();
-            await kv.put("canvasData", canvasDataUrl);
+            await kv.set("canvasData", canvasDataUrl);
             drawImages();
         };
 
@@ -191,6 +191,8 @@ async function initApp() {
 };
 
 document.addEventListener('DOMContentLoaded', initApp);
+
+
 //-----------------------------------------------------------------------
 
 
