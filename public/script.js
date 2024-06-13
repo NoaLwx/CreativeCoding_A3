@@ -22,8 +22,8 @@ socket.onmessage = e => {
 //----------------------------------------------------------------------
     
 
-import { open } from "https://deno.land/std@0.166.0/fs/mod.ts";
-const kv = await open("./my-kv-store.kv");
+// import { open } from "https://deno.land/std@0.166.0/fs/mod.ts";
+// const kv = await open("./my-kv-store.kv");
 
 // const kv = await Deno.openKv();
 
@@ -63,7 +63,7 @@ async function initApp() {
             });
 
             const canvasDataUrl = cnv.toDataURL();
-         kv.put("canvasData", canvasDataUrl);
+        //  kv.put("canvasData", canvasDataUrl);
             drawImages();
         };
 
@@ -165,14 +165,14 @@ async function initApp() {
         drawImages(); 
     };
 
-    const savedDataUrl = await kv.get("canvasData");
-    if (savedDataUrl) {
-        const imgFromDataUrl = new Image();
-        imgFromDataUrl.onload = function() {
-            ctx.drawImage(imgFromDataUrl, 0, 0, cnv.width, cnv.height); // Draw the image
-        };
-        imgFromDataUrl.src = savedDataUrl;
-    }
+    // const savedDataUrl = await kv.get("canvasData");
+    // if (savedDataUrl) {
+    //     const imgFromDataUrl = new Image();
+    //     imgFromDataUrl.onload = function() {
+    //         ctx.drawImage(imgFromDataUrl, 0, 0, cnv.width, cnv.height); // Draw the image
+    //     };
+    //     imgFromDataUrl.src = savedDataUrl;
+    // }
 
     document.getElementById('downloadBtn').addEventListener('click', function() {
         const dataURL = cnv.toDataURL('image/png');
