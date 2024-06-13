@@ -22,12 +22,11 @@ socket.onmessage = e => {
 //----------------------------------------------------------------------
     
 
-
-
-//------------------------------------------------------------------------
-
 import { open } from "https://deno.land/std@0.166.0/fs/mod.ts";
-const kv = await open("./my-kv-store.kv");
+// const kv = await open("./my-kv-store.kv");
+
+const kv = await Deno.openKv();
+
 
 async function initApp() {
 
