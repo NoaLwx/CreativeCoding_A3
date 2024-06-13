@@ -22,8 +22,8 @@ socket.onmessage = e => {
 //----------------------------------------------------------------------
     
 // import { serve } from "https://deno.land/std/http/server.ts";
-// import { open } from "https://deno.land/std/fs/mod.ts";
-// const kv = await open("./my-kv-store.kv");
+import { open } from "https://deno.land/std/fs/mod.ts";
+const kv = await open("./my-kv-store.kv");
 // i imported those in the server.js??
 
 

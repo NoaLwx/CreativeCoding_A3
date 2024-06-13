@@ -5,6 +5,7 @@ import { getNetworkAddr } from "https://deno.land/x/local_ip/mod.ts"
 import { open } from "https://deno.land/std/fs/mod.ts";
 const kv = await open("./my-kv-store.kv");
 
+
 const local_ip = await getNetworkAddr()
 console.log (`local area network IP: ${ local_ip }`)
 
