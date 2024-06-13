@@ -23,9 +23,9 @@ socket.onmessage = e => {
     
 
 import { open } from "https://deno.land/std@0.166.0/fs/mod.ts";
-// const kv = await open("./my-kv-store.kv");
+const kv = await open("./my-kv-store.kv");
 
-const kv = await Deno.openKv();
+// const kv = await Deno.openKv();
 
 
 async function initApp() {
@@ -33,6 +33,7 @@ async function initApp() {
     const cnv = document.querySelector("#box");
     cnv.width = window.innerWidth;
     cnv.height = window.innerHeight;
+
     const ctx = cnv.getContext('2d');
 
     let images = [];
