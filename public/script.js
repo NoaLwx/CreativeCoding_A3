@@ -22,10 +22,13 @@ socket.onmessage = e => {
 //----------------------------------------------------------------------
     
 // import { serve } from "https://deno.land/std/http/server.ts";
-import { open } from "https://deno.land/std/fs/mod.ts";
-const kv = await open("./my-kv-store.kv");
+// import { open } from "https://deno.land/std/fs/mod.ts";
+// const kv = await open("./my-kv-store.kv");
+// i imported those in the server.js??
+
 
 // const kv = await Deno.openKv();
+
 // also the canvas reset to it original size when i add the deno in
 //even with the on above
 await kv.put("canvasData", canvasDataUrl);
@@ -68,6 +71,9 @@ async function initApp() {
             const canvasDataUrl = cnv.toDataURL();
 
             //deno kv here. the await doesn't work. 
+
+            // await kv.put("canvasData", canvasDataUrl);
+
             // i tried follow what the tutorial on mdn website did
             // sorry for keep asking you i can't work this out for some reason
             //

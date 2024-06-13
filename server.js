@@ -2,6 +2,9 @@ import { serve } from "https://deno.land/std@0.158.0/http/server.ts"
 import { serveDir } from "https://deno.land/std@0.158.0/http/file_server.ts"
 import { getNetworkAddr } from "https://deno.land/x/local_ip/mod.ts"
 
+import { open } from "https://deno.land/std/fs/mod.ts";
+const kv = await open("./my-kv-store.kv");
+
 const local_ip = await getNetworkAddr()
 console.log (`local area network IP: ${ local_ip }`)
 
