@@ -19,10 +19,17 @@ socket.onmessage = e => {
     console.dir (pos)
 }
 
+//----------------------------------------------------------------------
     
+
+
+
 //------------------------------------------------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+const kv = await Deno.openKv();
+
+async function initApp() {
+
     const cnv = document.querySelector("#box");
     cnv.width = window.innerWidth;
     cnv.height = window.innerHeight;
@@ -55,7 +62,7 @@ document.addEventListener('DOMContentLoaded', function() {
             });
 
             const canvasDataUrl = cnv.toDataURL();
-            localStorage.setItem("canvasData", canvasDataUrl);
+            await kv.put("canvasData", canvasDataUrl);
             drawImages();
         };
 
@@ -157,7 +164,7 @@ document.addEventListener('DOMContentLoaded', function() {
         drawImages(); 
     };
 
-    const savedDataUrl = localStorage.getItem("canvasData");
+    const savedDataUrl = await kv.get("canvasData");
     if (savedDataUrl) {
         const imgFromDataUrl = new Image();
         imgFromDataUrl.onload = function() {
@@ -181,25 +188,26 @@ document.addEventListener('DOMContentLoaded', function() {
          ctx.fillRect (0, 0, innerWidth, innerHeight)
    
   });
-});
+};
 
+document.addEventListener('DOMContentLoaded', initApp);
 //-----------------------------------------------------------------------
 
 
-screen.orientation.addEventListener("change", async (event) => {
-    // Correctly access the orientation type and rotation angle
-    const orientationType = event.target.orientation; // e.g., "portrait-primary"
-    const rotationAngle = event.target.rotation; // e.g., 0, 90, 180, or 270
+// screen.orientation.addEventListener("change", async (event) => {
+//     // Correctly access the orientation type and rotation angle
+//     const orientationType = event.target.orientation; // e.g., "portrait-primary"
+//     const rotationAngle = event.target.rotation; // e.g., 0, 90, 180, or 270
   
-    // Log the new orientation type and rotation angle to the console
-    console.log(`ScreenOrientation change: ${orientationType}, ${rotationAngle} degrees.`);
+//     // Log the new orientation type and rotation angle to the console
+//     console.log(`ScreenOrientation change: ${orientationType}, ${rotationAngle} degrees.`);
   
-    // Attempt to lock the screen to landscape mode
-    try {
-      await screen.orientation.lock('landscape');
-      console.log('Screen locked to landscape-primary');
-    } catch (error) {
-      console.error('Failed to lock screen to landscape:', error);
-    }
-  });
+//     // Attempt to lock the screen to landscape mode
+//     try {
+//       await screen.orientation.lock('landscape');
+//       console.log('Screen locked to landscape-primary');
+//     } catch (error) {
+//       console.error('Failed to lock screen to landscape:', error);
+//     }
+//   });
   
