@@ -26,7 +26,8 @@ socket.onmessage = e => {
 
 //------------------------------------------------------------------------
 
-const kv = await Deno.openKv();
+import { open } from "https://deno.land/std@0.166.0/fs/mod.ts";
+const kv = await open("./my-kv-store.kv");
 
 async function initApp() {
 
@@ -62,7 +63,7 @@ async function initApp() {
             });
 
             const canvasDataUrl = cnv.toDataURL();
-            await kv.set("canvasData", canvasDataUrl);
+            await kv.put("canvasData", canvasDataUrl);
             drawImages();
         };
 
