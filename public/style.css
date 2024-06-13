@@ -1,14 +1,14 @@
 body{
-  /* overflow: hidden; */
+  overflow-x: hidden;
   margin: 0;
   padding: 0;
+  height: 100%;
   background-color: coral;
   font-family:Arial, Helvetica, sans-serif
 }
 
 .container {
-  width: 100vw;
-  height: 100vh;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -16,8 +16,13 @@ body{
 }
 
 
-
-
+.form-group{
+  display: flex;
+  margin: auto;
+  position: sticky;
+  z-index: 10;
+  top: 0;
+}
 
 button {
   font-size: 1rem;
@@ -30,13 +35,13 @@ button {
 
 #box{
   background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;    
 }
 
 
-.form-group {
-  display: flex; 
-  margin: auto;
-}
+
 
 input[type=file] {
   outline: 0;
@@ -81,8 +86,6 @@ input[type=file] {
   cursor: pointer;
   display: block;
   text-align: center;
-
-
 
   &:hover{
     background-color: rgb(31, 64, 118); 

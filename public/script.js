@@ -25,14 +25,14 @@ socket.onmessage = e => {
 // import { serve } from "https://deno.land/std/http/server.ts";
 // const kv = await open("./my-kv-store.kv");
 
-const kv = await Deno.openKv();
+// const kv = await Deno.openKv();
 
 
 async function initApp() {
 
     const cnv = document.querySelector("#box");
-    cnv.width = window.innerWidth;
-    cnv.height = window.innerHeight;
+    cnv.width = innerWidth;
+    cnv.height = cnv.width * 4/3;
 
     const ctx = cnv.getContext('2d');
 
@@ -63,7 +63,7 @@ async function initApp() {
             });
 
             const canvasDataUrl = cnv.toDataURL();
-            await kv.put("canvasData", canvasDataUrl);
+            // await kv.put("canvasData", canvasDataUrl);
             drawImages();
         };
 
@@ -157,19 +157,19 @@ async function initApp() {
   }
 
     window.onresize = () => {
-        cnv.width = window.innerWidth;
-        cnv.height = window.innerHeight;
+        cnv.width = innerWidth;
+        cnv.height = cnv.width * 4/3;
         drawImages(); 
     };
 
-    const savedDataUrl = await kv.get("canvasData");
-    if (savedDataUrl) {
-        const imgFromDataUrl = new Image();
-        imgFromDataUrl.onload = function() {
-            ctx.drawImage(imgFromDataUrl, 0, 0, cnv.width, cnv.height); // Draw the image
-        };
-        imgFromDataUrl.src = savedDataUrl;
-    }
+    // const savedDataUrl = await kv.get("canvasData");
+    // if (savedDataUrl) {
+    //     const imgFromDataUrl = new Image();
+    //     imgFromDataUrl.onload = function() {
+    //         ctx.drawImage(imgFromDataUrl, 0, 0, cnv.width, cnv.height); // Draw the image
+    //     };
+    //     imgFromDataUrl.src = savedDataUrl;
+    // }
 
     document.getElementById('downloadBtn').addEventListener('click', function() {
         const dataURL = cnv.toDataURL('image/png');
@@ -194,20 +194,21 @@ document.addEventListener('DOMContentLoaded', initApp);
 //-----------------------------------------------------------------------
 
 
-// screen.orientation.addEventListener("change", async (event) => {
-//     // Correctly access the orientation type and rotation angle
-//     const orientationType = event.target.orientation; // e.g., "portrait-primary"
-//     const rotationAngle = event.target.rotation; // e.g., 0, 90, 180, or 270
-  
-//     // Log the new orientation type and rotation angle to the console
-//     console.log(`ScreenOrientation change: ${orientationType}, ${rotationAngle} degrees.`);
-  
-//     // Attempt to lock the screen to landscape mode
-//     try {
-//       await screen.orientation.lock('landscape');
-//       console.log('Screen locked to landscape-primary');
-//     } catch (error) {
-//       console.error('Failed to lock screen to landscape:', error);
+
+// function lockScreenOrientation(orientation) {
+//     if ('screen' in navigator && 'orientation' in screen && screen.orientation) {
+//         screen.orientation.lock(orientation).then(function() {
+//             console.log(`Screen locked to ${orientation}`);
+//         }).catch(function(error) {
+//             console.error('Failed to lock screen orientation:', error);
+//             // Fallback or notify user
+//         });
+//     } else {
+//         console.warn('Screen orientation lock is not supported on this device.');
+//         // Fallback or notify user
 //     }
-//   });
+// }
+
+// // Example usage
+// lockScreenOrientation('landscape');
   
