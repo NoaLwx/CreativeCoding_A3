@@ -28,6 +28,7 @@ socket.onmessage = e => {
 const kv = await Deno.openKv();
 
 
+
 async function initApp() {
 
     const cnv = document.querySelector("#box");
@@ -63,7 +64,13 @@ async function initApp() {
             });
 
             const canvasDataUrl = cnv.toDataURL();
+
+            //deno kv here. the await doesn't work. 
+            // i tried follow what the tutorial on mdn website did
+            // sorry for keep asking you i can't work this out for some reason
             await kv.put("canvasData", canvasDataUrl);
+            //
+
             drawImages();
         };
 
@@ -162,7 +169,9 @@ async function initApp() {
         drawImages(); 
     };
 
+    //deno kv here!!
     const savedDataUrl = await kv.get("canvasData");
+    //
     if (savedDataUrl) {
         const imgFromDataUrl = new Image();
         imgFromDataUrl.onload = function() {
@@ -212,3 +221,4 @@ document.addEventListener('DOMContentLoaded', initApp);
 // // Example usage
 // lockScreenOrientation('landscape');
   
+//it said that it doesn't support the screen.orientation.lock() so i sticked to a fix canvas size
