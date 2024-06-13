@@ -183,4 +183,11 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 
+//-----------------------------------------------------------------------
 
+screen.orientation.addEventListener("change", (event) => {
+    const type = event.target.landscape;
+    const angle = event.target.angle;
+    console.log(`ScreenOrientation change: ${type}, ${angle} degrees.`);
+  });
+  
