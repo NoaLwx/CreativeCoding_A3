@@ -12,13 +12,13 @@ socket.onmessage = e => {
     console.log (`websocket message received:`)
 
     // convert the string back into an object
-    const pos = JSON.parse (e.data)
+    // const pos = JSON.parse (e.data)
 
     // add the position object to the squares array
-    squares.push (pos)
+    // squares.push (pos)
 
     // display the position object in the console
-    console.dir (pos)
+    // console.dir (pos)
 }
 
 //----------------------------------------------------------------------
