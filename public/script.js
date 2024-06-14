@@ -1,10 +1,12 @@
+// const socket = new WebSocket (`wss://hanhlu-a3.deno.dev/`)
+const socket = new WebSocket (`ws://localhost/`) 
 
-const socket = new WebSocket (`wss://hanhlu-a3.deno.dev/`)
 socket.onopen  = () => console.log (`client websocket opened`)
 socket.onclose = () => console.log (`client websocket closed`)
 socket.onerror =  e => console.dir (e)
 
 const squares = []
+
 
 socket.onmessage = e => {
     console.log (`websocket message received:`)
@@ -27,7 +29,7 @@ socket.onmessage = e => {
 // i imported those in the server.js??
 
 
-const kv = await Deno.openKv();
+// const kv = await Deno.openKv();
 
 // also the canvas reset to it original size when i add the deno in
 //even with the on above
@@ -69,14 +71,9 @@ async function initApp() {
             });
 
             const canvasDataUrl = cnv.toDataURL();
+            // console.log(canvasDataUrl);
 
-            //deno kv here. the await doesn't work. 
 
-            // await kv.put("canvasData", canvasDataUrl);
-
-            // i tried follow what the tutorial on mdn website did
-            // sorry for keep asking you i can't work this out for some reason
-            //
 
             drawImages();
         };

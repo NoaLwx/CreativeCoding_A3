@@ -2,8 +2,10 @@ import { serve } from "https://deno.land/std@0.158.0/http/server.ts"
 import { serveDir } from "https://deno.land/std@0.158.0/http/file_server.ts"
 import { getNetworkAddr } from "https://deno.land/x/local_ip/mod.ts"
 
-// import { open } from "https://deno.land/std/fs/mod.ts";
-// const kv = await open("./my-kv-store.kv");
+
+const kv = await Deno.openKv();
+
+// await kv.put("canvasData", canvasDataUrl);
 
 
 const local_ip = await getNetworkAddr()
@@ -28,6 +30,7 @@ function handler (incoming_req) {
 
             // add the socket to the sockets array
             sockets.push (socket)
+            
         }
 
         socket.onclose = () => {
@@ -40,9 +43,9 @@ function handler (incoming_req) {
 
         socket.onerror = e => console.dir (e)
 
-        socket.onmessage = e => {
+        socket.onmessage = async e => {
             console.log (`incoming message: ${ e.data }`)
-
+            kv.set ([`canvas`], e.data)
             // send the message data back out 
             // to each of the sockets in the array
             sockets.forEach (s => s.send (e.data))
