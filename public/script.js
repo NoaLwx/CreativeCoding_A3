@@ -1,7 +1,10 @@
-const socket = new WebSocket (`wss://hanhlu-a3.deno.dev/`)
-// const socket = new WebSocket (`ws://localhost/`) 
+// const socket = new WebSocket (`wss://hanhlu-a3.deno.dev/`)
+const socket = new WebSocket (`ws://localhost/`) 
 
-socket.onopen  = () => console.log (`client websocket opened`)
+socket.onopen  = () => {
+    console.dir (e)
+
+    console.log (`client websocket opened`)}
 socket.onclose = () => console.log (`client websocket closed`)
 socket.onerror =  e => console.dir (e)
 
@@ -18,7 +21,6 @@ socket.onmessage = e => {
     // squares.push (pos)
 
     // display the position object in the console
-    // console.dir (pos)
 }
 
 //----------------------------------------------------------------------
@@ -173,7 +175,7 @@ async function initApp() {
     };
 
     // //deno kv here!!
-    // const savedDataUrl = await kv.get("canvasData");
+
     // //
     // if (savedDataUrl) {
     //     const imgFromDataUrl = new Image();

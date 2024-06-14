@@ -25,11 +25,13 @@ function handler (incoming_req) {
 
         const { socket, response } = Deno.upgradeWebSocket (req)
 
-        socket.onopen  = () => {
-            console.log (`server WebSocket opened`)
-
-            // add the socket to the sockets array
+        socket.onopen  = async () => {
             sockets.push (socket)
+
+            console.log (`server WebSocket opened`)
+            const data = await kv.get([`canvas`]);
+            console.log (data);
+            socket.send (data.value)
             
         }
 
@@ -49,7 +51,6 @@ function handler (incoming_req) {
 
             // send the message data back out 
             // to each of the sockets in the array
-
             sockets.forEach (s => s.send (e.data))
         }
 
