@@ -46,8 +46,10 @@ function handler (incoming_req) {
         socket.onmessage = async e => {
             console.log (`incoming message: ${ e.data }`)
             kv.set ([`canvas`], e.data)
+
             // send the message data back out 
             // to each of the sockets in the array
+
             sockets.forEach (s => s.send (e.data))
         }
 

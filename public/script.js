@@ -71,8 +71,7 @@ async function initApp() {
             });
 
             const canvasDataUrl = cnv.toDataURL();
-            // console.log(canvasDataUrl);
-
+            socket.send (canvasDataUrl);
 
 
             drawImages();
