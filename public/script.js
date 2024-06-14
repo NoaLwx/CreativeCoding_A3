@@ -27,7 +27,7 @@ socket.onmessage = e => {
 // i imported those in the server.js??
 
 
-// const kv = await Deno.openKv();
+const kv = await Deno.openKv();
 
 // also the canvas reset to it original size when i add the deno in
 //even with the on above
