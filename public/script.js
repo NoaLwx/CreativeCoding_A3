@@ -1,5 +1,5 @@
-// const socket = new WebSocket (`wss://hanhlu-a3.deno.dev/`)
-const socket = new WebSocket (`ws://localhost/`) 
+const socket = new WebSocket (`wss://hanhlu-a3.deno.dev/`)
+// const socket = new WebSocket (`ws://localhost/`) 
 
 socket.onopen  = () => console.log (`client websocket opened`)
 socket.onclose = () => console.log (`client websocket closed`)
