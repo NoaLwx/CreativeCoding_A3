@@ -1,9 +1,12 @@
 import { serve } from "https://deno.land/std@0.158.0/http/server.ts"
 import { serveDir } from "https://deno.land/std@0.158.0/http/file_server.ts"
 import { getNetworkAddr } from "https://deno.land/x/local_ip/mod.ts"
+// import { gzip } from "https://deno.land/std@0.114.0/zlib/mod.ts";
+// import { GzipStream } from "https://deno.land/x/compress@v0.4.5/mod.ts";
 
 
 const kv = await Deno.openKv();
+// const gzip = new GzipStream();
 
 // await kv.put("canvasData", canvasDataUrl);
 
@@ -30,7 +33,7 @@ function handler (incoming_req) {
 
             console.log (`server WebSocket opened`)
             const data = await kv.get([`canvas`]);
-            console.log (data);
+            // console.log (data);
             socket.send (data.value)
             
         }
@@ -47,7 +50,13 @@ function handler (incoming_req) {
 
         socket.onmessage = async e => {
             console.log (`incoming message: ${ e.data }`)
-            kv.set ([`canvas`], e.data)
+            
+            // const compressedImageData = await gzip.compress(e.data);
+
+            kv.set ([`canvas`], e.data)           
+
+            // kv.set ([`canvas`], compressedImageData)
+
 
             // send the message data back out 
             // to each of the sockets in the array

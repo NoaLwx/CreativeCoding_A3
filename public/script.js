@@ -2,9 +2,9 @@
 const socket = new WebSocket (`ws://localhost/`) 
 
 socket.onopen  = () => {
-    console.dir (e)
+    console.log (`client websocket opened`)
+}
 
-    console.log (`client websocket opened`)}
 socket.onclose = () => console.log (`client websocket closed`)
 socket.onerror =  e => console.dir (e)
 
@@ -13,6 +13,9 @@ const squares = []
 
 socket.onmessage = e => {
     console.log (`websocket message received:`)
+
+    console.dir (e.data);
+
 
     // convert the string back into an object
     // const pos = JSON.parse (e.data)
@@ -87,7 +90,7 @@ async function initApp() {
     function drawImages() {
         ctx.clearRect(0, 0, cnv.width, cnv.height);
         images.forEach((image) => {
-            ctx.drawImage(image.img, image.x , image.y , image.img.width/8, image.img.height/8);
+            ctx.drawImage(image.img, image.x , image.y , image.img.width/6, image.img.height/6);
         });
     }
 
