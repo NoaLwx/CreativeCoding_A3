@@ -33,7 +33,7 @@ function handler (incoming_req) {
 
             console.log (`server WebSocket opened`)
             const data = await kv.get([`canvas`]);
-            // console.log (data);
+            console.log (data);
             socket.send (data.value)
             
         }
@@ -53,7 +53,7 @@ function handler (incoming_req) {
             
             // const compressedImageData = await gzip.compress(e.data);
 
-            kv.set ([`canvas`], e.data)           
+            kv.set ([`canvas`], e.data);        
 
             // kv.set ([`canvas`], compressedImageData)
 

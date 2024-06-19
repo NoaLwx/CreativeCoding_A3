@@ -1,4 +1,11 @@
+ const cnv = document.querySelector("#box");
+    cnv.width = 1500;
+    cnv.height = cnv.width * 9/16;
+const ctx = cnv.getContext('2d');
+//--------------------------------------------------------------
+
 // const socket = new WebSocket (`wss://hanhlu-a3.deno.dev/`)
+
 const socket = new WebSocket (`ws://localhost/`) 
 
 socket.onopen  = () => {
@@ -10,43 +17,24 @@ socket.onerror =  e => console.dir (e)
 
 const squares = []
 
-
 socket.onmessage = e => {
     console.log (`websocket message received:`)
 
     console.dir (e.data);
+    // const imageData = JSON.parse(e.data);
 
-    // convert the string back into an object
-    // const pos = JSON.parse (e.data)
-
-    // add the position object to the squares array
-    // squares.push (pos)
-
-    // display the position object in the console
+    const image =  new Image();
+    image.onload = () =>{
+        ctx.clearRect(0,0, cnv.width, cnv.height);
+        ctx.drawImage(image,0,0, cnv.width, cnv.height);
+    };
+    image.src = e.data;
 }
-
-//----------------------------------------------------------------------
-    
-// import { serve } from "https://deno.land/std/http/server.ts";
-// import { open } from "https://deno.land/std/fs/mod.ts";
-// const kv = await open("./my-kv-store.kv");
-// i imported those in the server.js??
-
-
-// const kv = await Deno.openKv();
-
-// also the canvas reset to it original size when i add the deno in
-//even with the on above
-// await kv.put("canvasData", canvasDataUrl);
-
 
 async function initApp() {
 
-    const cnv = document.querySelector("#box");
-    cnv.width = 2000;
-    cnv.height = cnv.width * 9/16;
-
-    const ctx = cnv.getContext('2d');
+const uploader = document.querySelector("#uploader");
+const inputBox = document.querySelector(".form-group");
 
     let images = [];
     let currentX = cnv.width / 2;
@@ -54,9 +42,6 @@ async function initApp() {
 
     let lastMouseX = 0;
     let lastMouseY = 0;
-
-    const uploader = document.querySelector("#uploader");
-    const inputBox = document.querySelector(".form-group");
 
     uploader.addEventListener('change', (e) => {
         console.log('upload');
@@ -67,31 +52,30 @@ async function initApp() {
 
         img.onload = () => {
             
-            images.push({ 
+            const ImageObject = {
                 img: img,
                 x: currentX,
                 y: currentY,
-                dragging: false
-            });
+                width: img.width/4,
+                height: img.height/4
+            }
+            // ImageObject.dragging = false;
+            images.push(ImageObject);
 
-            const canvasDataUrl = cnv.toDataURL();
-            socket.send (canvasDataUrl);
-
-
+           
             drawImages();
+            // const imageData = JSON.stringify(ImageObject);
+            // socket.send (imageData);
         };
-
-        setTimeout(() => {
-            inputBox.classList.toggle("hide");
-        }, 100);
     });
 
     function drawImages() {
         ctx.clearRect(0, 0, cnv.width, cnv.height);
         images.forEach((image) => {
-            ctx.drawImage(image.img, image.x , image.y , image.img.width/6, image.img.height/6);
+            ctx.drawImage(image.img, image.x , image.y , image.img.width, image.img.height);
         });
     }
+
 
     cnv.addEventListener("dblclick", toggleInputVisibility);
 
@@ -118,6 +102,7 @@ async function initApp() {
             }
         });
     };
+
 
     function handleMouseMove(e) {
         if (images.some(image => image.dragging)) {
@@ -170,22 +155,11 @@ async function initApp() {
       handleMouseUp();
   }
 
-    window.onresize = () => {
-        cnv.width = 2000;
-        cnv.height = cnv.width * 9/16;
-        drawImages(); 
-    };
-
-    // //deno kv here!!
-        // const savedDataUrl = e.data;
-    //
-    // if (e.data) {
-    //     const imgFromDataUrl = new Image();
-    //     imgFromDataUrl.onload = function() {
-    //         ctx.drawImage(imgFromDataUrl, 0, 0, cnv.width, cnv.height); // Draw the image
-    //     };
-    //     imgFromDataUrl.src = e.data;
-    // }
+    // window.onresize = () => {
+    //     cnv.width = 2000;
+    //     cnv.height = cnv.width * 9/16;
+    //     drawImages(); 
+    // };
 
     document.getElementById('downloadBtn').addEventListener('click', function() {
         const dataURL = cnv.toDataURL('image/png');
