@@ -27,7 +27,7 @@ let images = [];
 
 async function initApp() {
 
-    socket.onmessage = e => {
+socket.onmessage = e => {
         console.log (`websocket message received:`, e.data)
     
         const receivedData = JSON.parse(e.data);
@@ -39,7 +39,7 @@ async function initApp() {
         newImg.onload = () => {
             // ctx.drawImage(newImg, receivedData.x, receivedData.y, receivedData.width / 4, receivedData.height / 4);
         
-        const ImageObject = {
+        const ImageObjectData = {
             img: newImg,
             imgData: receivedData.imgData,
             x: receivedData.x,
@@ -48,11 +48,10 @@ async function initApp() {
             height: receivedData.height,
             dragging: false  // Ensure to initialize dragging state
         };
-    
-        images.push(ImageObject);
-        drawImages();// images.push(ImageObject);
+        images.push(ImageObjectData);
+        drawImages();
     };
-    }
+};
 
 const uploader = document.querySelector("#uploader");
 const inputBox = document.querySelector(".form-group");
@@ -130,6 +129,8 @@ const inputBox = document.querySelector(".form-group");
                 e.layerY > image.y && 
                 e.layerY < image.y + image.img.height/4) 
                 {
+                
+                images.forEach(img => img.dragging = false);
                 image.dragging = true;
                 lastMouseX = e.layerX;
                 lastMouseY = e.layerY;
