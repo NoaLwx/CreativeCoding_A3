@@ -20,15 +20,17 @@ const squares = []
 socket.onmessage = e => {
     console.log (`websocket message received:`)
 
-    console.dir (e.data);
-    // const imageData = JSON.parse(e.data);
+    const imageData = JSON.parse(e.data);
 
+    console.dir (e.data);
     const image =  new Image();
     image.onload = () =>{
         ctx.clearRect(0,0, cnv.width, cnv.height);
         ctx.drawImage(image,0,0, cnv.width, cnv.height);
     };
-    image.src = e.data;
+    image.src = imageData.img;
+
+    console.log(e.data.img)
 }
 
 async function initApp() {
@@ -62,10 +64,26 @@ const inputBox = document.querySelector(".form-group");
             // ImageObject.dragging = false;
             images.push(ImageObject);
 
+            // images.push({
+            //     img:img,
+            //     x: currentX,
+            //     y: currentY,
+            //     width: img.width/4,
+            //     height: img.height/4,
+            //     dragging: false
+            // });
+
            
             drawImages();
             // const imageData = JSON.stringify(ImageObject);
             // socket.send (imageData);
+            const image_obj = {
+                img: `hello from the client`,
+                x: currentX,
+                y: currentY
+              }
+            socket.send(JSON.stringify(image_obj));
+            
         };
     });
 

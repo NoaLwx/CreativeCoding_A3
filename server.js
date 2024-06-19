@@ -33,8 +33,8 @@ function handler (incoming_req) {
 
             console.log (`server WebSocket opened`)
             const data = await kv.get([`canvas`]);
-            console.log (data);
-            socket.send (data.value)
+            // console.log (data);
+
             
         }
 
@@ -49,14 +49,11 @@ function handler (incoming_req) {
         socket.onerror = e => console.dir (e)
 
         socket.onmessage = async e => {
-            console.log (`incoming message: ${ e.data }`)
-            
-            // const compressedImageData = await gzip.compress(e.data);
-
+            // console.log (`incoming message: ${ e.data }`)
             kv.set ([`canvas`], e.data);        
 
             // kv.set ([`canvas`], compressedImageData)
-
+            
 
             // send the message data back out 
             // to each of the sockets in the array
