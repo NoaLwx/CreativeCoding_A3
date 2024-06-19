@@ -16,7 +16,6 @@ socket.onmessage = e => {
 
     console.dir (e.data);
 
-
     // convert the string back into an object
     // const pos = JSON.parse (e.data)
 
@@ -178,14 +177,14 @@ async function initApp() {
     };
 
     // //deno kv here!!
-
-    // //
-    // if (savedDataUrl) {
+        // const savedDataUrl = e.data;
+    //
+    // if (e.data) {
     //     const imgFromDataUrl = new Image();
     //     imgFromDataUrl.onload = function() {
     //         ctx.drawImage(imgFromDataUrl, 0, 0, cnv.width, cnv.height); // Draw the image
     //     };
-    //     imgFromDataUrl.src = savedDataUrl;
+    //     imgFromDataUrl.src = e.data;
     // }
 
     document.getElementById('downloadBtn').addEventListener('click', function() {
@@ -200,7 +199,7 @@ async function initApp() {
 
     document.getElementById('deleteBtn').addEventListener('click', function() {
          ctx.fillStyle = `white`
-         ctx.fillRect (0, 0, innerWidth, innerHeight)
+         ctx.fillRect (0, 0, cnv.width, cnv.height)
    
   });
 };
@@ -210,23 +209,5 @@ document.addEventListener('DOMContentLoaded', initApp);
 
 //-----------------------------------------------------------------------
 
-
-
-// function lockScreenOrientation(orientation) {
-//     if ('screen' in navigator && 'orientation' in screen && screen.orientation) {
-//         screen.orientation.lock(orientation).then(function() {
-//             console.log(`Screen locked to ${orientation}`);
-//         }).catch(function(error) {
-//             console.error('Failed to lock screen orientation:', error);
-//             // Fallback or notify user
-//         });
-//     } else {
-//         console.warn('Screen orientation lock is not supported on this device.');
-//         // Fallback or notify user
-//     }
-// }
-
-// // Example usage
-// lockScreenOrientation('landscape');
   
 //it said that it doesn't support the screen.orientation.lock() so i sticked to a fix canvas size
