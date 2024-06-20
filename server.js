@@ -15,6 +15,7 @@ channel.onmessage = async (e) => {
     sockets.forEach (s => s.send (entry))
 };
 
+
 const kv = await Deno.openKv();
 
 const local_ip = await getNetworkAddr()
@@ -58,9 +59,8 @@ async function handler (incoming_req) {
         socket.onmessage = async e => {
             console.log (e.data);
             kv.set ([`canvasData`], e.data);        
-
-            // kv.set ([`canvas`], compressedImageData)
             sockets.forEach (s => s.send (e.data))
+            channel.postMessage ('update');
         }
 
         return response
