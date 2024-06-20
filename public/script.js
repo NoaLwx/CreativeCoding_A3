@@ -5,7 +5,7 @@ const ctx = cnv.getContext('2d');
 
 //--------------------------------------------------------------
 
-const socket = new WebSocket (`wss://hanhlu-a3.deno.dev/`)
+const socket = new WebSocket (`wss://s4004087-a3.deno.dev/`)
 
 // const socket = new WebSocket (`ws://localhost/`) 
 
