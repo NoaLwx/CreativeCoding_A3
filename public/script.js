@@ -5,9 +5,9 @@ const ctx = cnv.getContext('2d');
 
 //--------------------------------------------------------------
 
-// const socket = new WebSocket (`wss://hanhlu-a3.deno.dev/`)
+const socket = new WebSocket (`wss://hanhlu-a3.deno.dev/`)
 
-const socket = new WebSocket (`ws://localhost/`) 
+// const socket = new WebSocket (`ws://localhost/`) 
 
 socket.onopen  = () => {
     console.log (`client websocket opened`)
@@ -71,7 +71,7 @@ const inputBox = document.querySelector(".form-group");
         img.onload = () => {
 
         const imageCanvas = document.createElement('canvas');
-        imageCanvas.width = 100;
+        imageCanvas.width = 300;
         imageCanvas.height = img.height / img.width * imageCanvas.width;
 
         console.log (imageCanvas.width);
@@ -90,9 +90,9 @@ const inputBox = document.querySelector(".form-group");
                 dragging: false
             }
             // ImageObject.dragging = false;
-            images.push(ImageObject);
+            // images.push(ImageObject);
             
-            drawImages();
+            // drawImages();
             // const imageData = JSON.stringify(ImageObject);
             // socket.send (imgData);
             console.log (imgData);
@@ -110,61 +110,65 @@ const inputBox = document.querySelector(".form-group");
     });
  }
 
-    cnv.addEventListener("dblclick", toggleInputVisibility);
-
-    function toggleInputVisibility() {
-        inputBox.classList.toggle("hide");
-    }
-
     cnv.onmousedown = handleMouseDown;
     cnv.onmousemove = handleMouseMove;
     cnv.onmouseup = handleMouseUp;
     cnv.onmouseout = handleMouseOut;
 
+    let selectedImage = null;
+
     function handleMouseDown(e) {
-        images.forEach((image) => { // Corrected to iterate through images
-            if (image.dragging === false && 
-                e.layerX > image.x && 
-                e.layerX < image.x + image.img.width/4 && 
-                e.layerY > image.y && 
-                e.layerY < image.y + image.img.height/4) 
-                {
-                
-                images.forEach(img => img.dragging = false);
-                image.dragging = true;
-                lastMouseX = e.layerX;
-                lastMouseY = e.layerY;
-            }
+        const mouseX = e.layerX;
+        const mouseY = e.layerY;
+        lastMouseX = mouseX;
+        lastMouseY = mouseY;
+    
+        // Check if mouse is over any image
+        selectedImage = images.find(image => {
+            return mouseX >= image.x && 
+                   mouseX <= image.x + image.width/4 &&
+                   mouseY >= image.y && 
+                   mouseY <= image.y + image.height/4;
         });
+    
+        if (selectedImage) {
+            selectedImage.dragging = true;
+        }
     };
 
 
     function handleMouseMove(e) {
-        if (images.some(image => image.dragging)) {
-            images.forEach((image) => {
-                if (image.dragging) {
-                    const deltaX = e.layerX - lastMouseX;
-                    const deltaY = e.layerY - lastMouseY;
-                    image.x += deltaX;
-                    image.y += deltaY;
-                    lastMouseX = e.layerX;
-                    lastMouseY = e.layerY;
-                }
-            });
+        if (!selectedImage) return;
+
+        const mouseX = e.layerX;
+        const mouseY = e.layerY;
+    
+        if (selectedImage.dragging) {
+            const dx = mouseX - lastMouseX;
+            const dy = mouseY - lastMouseY;
+    
+            selectedImage.x += dx;
+            selectedImage.y += dy;
+    
+            lastMouseX = mouseX;
+            lastMouseY = mouseY;
+    
             drawImages();
         }
     };
 
     function handleMouseUp(e) {
-        images.forEach((image) => {
-            image.dragging = false;
-        });
+        if (selectedImage) {
+            selectedImage.dragging = false;
+            selectedImage = null;
+        }
     };
 
     function handleMouseOut(e) {
-        images.forEach((image) => {
-            image.dragging = false;
-        });
+        if (selectedImage) {
+            selectedImage.dragging = false;
+            selectedImage = null;
+        }
     };
 
 
@@ -207,9 +211,10 @@ const inputBox = document.querySelector(".form-group");
     });
 
     document.getElementById('deleteBtn').addEventListener('click', function() {
-         ctx.fillStyle = `white`
-         ctx.fillRect (0, 0, cnv.width, cnv.height)
-   
+        ctx.clearRect (0, 0, cnv.width, cnv.height)
+        images.length = 0; 
+
+
   });
 
 }
