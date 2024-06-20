@@ -194,11 +194,11 @@ const inputBox = document.querySelector(".form-group");
       handleMouseUp();
   }
 
-    // window.onresize = () => {
-    //     cnv.width = 2000;
-    //     cnv.height = cnv.width * 9/16;
-    //     drawImages(); 
-    // };
+    window.onresize = () => {
+        cnv.width = 2000;
+        cnv.height = cnv.width * 9/16;
+        drawImages(); 
+    };
 
     document.getElementById('downloadBtn').addEventListener('click', function() {
         const dataURL = cnv.toDataURL('image/png');
