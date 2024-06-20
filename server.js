@@ -60,7 +60,7 @@ async function handler (incoming_req) {
             console.log (e.data);
             kv.set ([`canvasData`], e.data);        
             sockets.forEach (s => s.send (e.data))
-            channel.postMessage ("all_messages")
+            channel.postMessage (kv.get ([`canvasData`]));
     }
 
         return response
