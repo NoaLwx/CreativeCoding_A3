@@ -62,7 +62,7 @@ async function handler (incoming_req) {
             sockets.forEach (s => s.send (e.data))
             const entry = await kv.get ([`canvasData`], e.data);
 
-            channel.postMessage (entry)
+            channel.postMessage (JSON.stringify(entry));
     }
 
         return response
