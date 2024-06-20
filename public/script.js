@@ -71,7 +71,7 @@ const inputBox = document.querySelector(".form-group");
         img.onload = () => {
 
         const imageCanvas = document.createElement('canvas');
-        imageCanvas.width = 300;
+        imageCanvas.width = 200;
         imageCanvas.height = img.height / img.width * imageCanvas.width;
 
         console.log (imageCanvas.width);
