@@ -195,7 +195,7 @@ const inputBox = document.querySelector(".form-group");
   }
 
     window.onresize = () => {
-        cnv.width = 2000;
+        cnv.width = 1500;
         cnv.height = cnv.width * 9/16;
         drawImages(); 
     };
