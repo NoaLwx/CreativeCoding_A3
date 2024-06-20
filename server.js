@@ -1,6 +1,19 @@
 import { serve } from "https://deno.land/std@0.158.0/http/server.ts"
 import { serveDir } from "https://deno.land/std@0.158.0/http/file_server.ts"
 import { getNetworkAddr } from "https://deno.land/x/local_ip/mod.ts"
+import { Hono } from "https://deno.land/x/hono@v4.3.11/mod.ts";
+
+
+
+// A BroadcastChannel used by all isolates
+const channel = new BroadcastChannel("all_messages");
+
+// When a new message comes in from other instances, add it
+channel.onmessage = async (e) => {
+    console.log('Message received on BroadcastChannel:', e.data);
+    const entry = await kv.get ([`canvasData`]);
+    sockets.forEach (s => s.send (entry))
+};
 
 const kv = await Deno.openKv();
 
@@ -8,16 +21,18 @@ const local_ip = await getNetworkAddr()
 console.log (`local area network IP: ${ local_ip }`)
 
 serve (handler, { port: 80 })
+// serve (handler, { port: 8080 })
+// serve (handler, { port: 8081 })
 
 let sockets = []
 
-function handler (incoming_req) {
-
+async function handler (incoming_req) {
+  
     let req = incoming_req
 
     const upgrade = req.headers.get ("upgrade") || ""
 
-    if (upgrade.toLowerCase() == "websocket") {
+    if (upgrade.toLowerCase() === "websocket") {
 
         const { socket, response } = Deno.upgradeWebSocket (req)
 
@@ -35,7 +50,7 @@ function handler (incoming_req) {
 
             // filters closed sockets (ie. sockets without
             // a .readyState of 1) out of the array
-            sockets = sockets.filter (s => s.readyState == 1)
+            sockets = sockets.filter (s => s.readyState == WebSocket.OPEN)
         }
 
         socket.onerror = e => console.dir (e)
