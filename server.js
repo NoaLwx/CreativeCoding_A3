@@ -11,8 +11,8 @@ const channel = new BroadcastChannel("all_messages");
 // When a new message comes in from other instances, add it
 channel.onmessage = async (e) => {
     console.log('Message received on BroadcastChannel:', e.data);
-    // const entry = await kv.get ([`canvasData`], e.data);
-    sockets.forEach (s => s.send (e.data))
+    const entry = await kv.get ([`canvasData`]);
+    sockets.forEach (s => s.send (entry));
 };
 
 
@@ -60,7 +60,7 @@ async function handler (incoming_req) {
             console.log (e.data);
             kv.set ([`canvasData`], e.data);        
             sockets.forEach (s => s.send (e.data))
-            const entry = await kv.get ([`canvasData`], e.data);
+            const entry = await kv.get ([`canvasData`]);
 
             channel.postMessage (JSON.stringify(entry))
     }
