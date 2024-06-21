@@ -5,17 +5,17 @@ import { getNetworkAddr } from "https://deno.land/x/local_ip/mod.ts"
 
 
 
-// A BroadcastChannel used by all isolates
-const channel = new BroadcastChannel("all_messages");
-console.log (channel)
+// // A BroadcastChannel used by all isolates
+// const channel = new BroadcastChannel("all_messages");
+// console.log (channel)
 
 
-// When a new message comes in from other instances, add it
-channel.onmessage = async (e) => {
-    console.log('Message received on BroadcastChannel:', e.data);
-    const entry = await kv.get ([`canvasData`]);
-    sockets.forEach (s => s.send (entry));
-};
+// // When a new message comes in from other instances, add it
+// channel.onmessage = async (e) => {
+//     console.log('Message received on BroadcastChannel:', e.data);
+//     const entry = await kv.get ([`canvasData`]);
+//     sockets.forEach (s => s.send (entry));
+// };
 
 
 const kv = await Deno.openKv();
@@ -62,9 +62,9 @@ async function handler (incoming_req) {
             console.log (e.data);
             kv.set ([`canvasData`], e.data);        
             sockets.forEach (s => s.send (e.data))
-            const entry = await kv.get ([`canvasData`]);
+            // const entry = await kv.get ([`canvasData`]);
 
-            channel.postMessage (JSON.stringify(entry))
+            // channel.postMessage (entry);
     }
 
         return response
