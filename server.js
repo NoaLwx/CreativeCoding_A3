@@ -7,6 +7,8 @@ import { getNetworkAddr } from "https://deno.land/x/local_ip/mod.ts"
 
 // A BroadcastChannel used by all isolates
 const channel = new BroadcastChannel("all_messages");
+console.log (channel)
+
 
 // When a new message comes in from other instances, add it
 channel.onmessage = async (e) => {
